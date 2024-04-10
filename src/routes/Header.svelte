@@ -7,7 +7,7 @@
 <header>
 	<div class="corner">
 		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
+			<img src="/favicon.jpeg" alt="SvelteKit" />
 		</a>
 	</div>
 
