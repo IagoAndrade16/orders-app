@@ -6,7 +6,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item me-4">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
@@ -19,7 +19,7 @@
           <a class="nav-link" href="/perguntas-frequentes">Perguntas Frequentes</a>
         </li>
       </ul>
-      <div class="d-flex" role="search">
+      <div class="d-flex justify-content-center" role="search">
         <button class="btn btn-outline-dark">
 					Ir para o carrinho
 					<img src="/icons/box-arrow.svg" class="mb-2" height="12" alt="">
