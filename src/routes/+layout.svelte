@@ -1,5 +1,6 @@
-<script>
-	import Navbar from "$lib/components/Navbar.svelte";
+<svelte:head>
+	<title>Peppe Forneria</title>
+	<meta name="Peppe Forneria" content="Peppe Forneria" />
+</svelte:head>
 
-</script>
-<Navbar />
+<slot />

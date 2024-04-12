@@ -8,21 +8,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item me-4">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item me-4">
           <a class="nav-link" href="/sobre">Sobre</a>
         </li>
 
-				<li class="nav-item">
+				<li class="nav-item me-4">
           <a class="nav-link" href="/perguntas-frequentes">Perguntas Frequentes</a>
         </li>
       </ul>
       <div class="d-flex" role="search">
         <button class="btn btn-outline-dark">
 					Ir para o carrinho
-					<img src="/icons/box-arrow.svg" class="mb-2" alt="">
+					<img src="/icons/box-arrow.svg" class="mb-2" height="12" alt="">
 				</button>
       </div>
     </div>
