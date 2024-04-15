@@ -1,4 +1,6 @@
 <script>
+	import Footer from "$lib/components/landing/Footer.svelte";
+
 
 	import Navbar from "$lib/components/landing/Navbar.svelte";
 
@@ -9,5 +11,5 @@
 </svelte:head>
 
 <Navbar />
-
 <slot />
+<Footer />

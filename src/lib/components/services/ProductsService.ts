@@ -11,7 +11,7 @@ export class ProductsService {
 
     const res = await OrdersApi.get(`/product?page=${input.page}&pageSize=${input.pageSize}`);
 
-    console.log('res', res.data);
+    // console.log('res', res.data);
 
     return {
       status: 'SUCESS',

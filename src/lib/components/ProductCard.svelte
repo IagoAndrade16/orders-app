@@ -1,9 +1,11 @@
 <script lang="ts">
-	import type { ButtonClass } from "./types/ProductCardComponentDTOs";
+	import { Utils } from "$lib/utils/Utils";
+import type { ButtonClass } from "./types/ProductCardComponentDTOs";
 
   export let imgSrc: string | null;
   export let title: string;
   export let text: string;
+  export let price: number;
   export let productId: string;
   export let buttonAdditionalClasses: string | null = '';
   
@@ -11,18 +13,39 @@
 
 </script>
 
-<div class="card my-2">
+<a class="card my-2 shadow" href="/produtos?id={productId}">
   <img src="{imgSrc}" class="card-img-top" alt="Product Card">
-  <div class="card-body">
-    <h5 class="card-title">{title}</h5>
+  <div class="card-body text-decoration-none">
+    <div class="d-flex justify-content-between">
+      <h5 class="card-title">{title}</h5>
+      <small>{Utils.formatNumberToBrl(price)}</small>
+    </div>
     <p class="card-text">{text}</p>
-    <a href="/product?id={productId}" class="btn btn-{buttonColor} {buttonAdditionalClasses} w-auto">Ver produto</a>
+    <a href="/produtos?id={productId}" class="btn btn-{buttonColor} {buttonAdditionalClasses} view-product">Ver produto</a>
   </div>
-</div>
+</a>
 
 <style>
   .card-img-top {
     max-height: 11rem;
     object-fit: cover;
   }
+
+  .view-product {
+    width: 100%;
+  }
+
+  .card:hover {
+		opacity: 0.8;
+		transition: 0.3s;
+	}
+
+	.card {
+		opacity: 1;
+		transition: 0.5s;
+	}
+
+	.card > * {
+		cursor: pointer;
+	}
 </style>
