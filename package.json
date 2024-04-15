@@ -2,7 +2,7 @@
 	"name": "orders-app",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev --open",
 		"build": "vite build",
 		"preview": "vite preview",
 		"test": "npm run test:integration && npm run test:unit",
@@ -37,6 +37,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"bootstrap": "^5.3.3"
+		"axios": "^1.6.8",
+		"bootstrap": "^5.3.3",
+		"buffer": "^6.0.3"
 	}
 }

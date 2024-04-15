@@ -5,7 +5,6 @@
 
 </script>
 
-<Navbar />
 <Carousel />
 <ProductsSection />
 
