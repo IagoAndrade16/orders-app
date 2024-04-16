@@ -8,7 +8,7 @@
 
 	let products: ProductCardComponentInput[] = [];
 
-	let pageNumber: number = parseInt($page.url.searchParams.get('page') || '1');
+	let actualPage: number = parseInt($page.url.searchParams.get('page') || '1');
 	let pageSize: number = 24;
 	let numberOfPages: number = 1;
   let productsTotal: number = 0;
@@ -16,25 +16,25 @@
 
 	const handleChangePagination = async (newPage: string) => {
     if(newPage === 'previous') {
-      pageNumber--;
+      actualPage--;
       await searchProducts();
       return;
     }
 
     if(newPage === 'next') {
-      pageNumber++;
+      actualPage++;
       await searchProducts();
       return;
     }
 
-		pageNumber = parseInt(newPage);
+		actualPage = parseInt(newPage);
 		await searchProducts();
 	};
 
 	const searchProducts = async () => {
     products = [];
 		const listProductsRes = await ProductsService.list({
-			page: pageNumber,
+			page: actualPage,
 			pageSize,
       name: searchValue
 		});
@@ -52,7 +52,6 @@
 
     productsTotal = listProductsRes.data.total;
 		numberOfPages = Math.ceil(listProductsRes.data.total / pageSize);
-    console.log('numberOfPages', numberOfPages);
 	};
 
 	onMount(async () => {
@@ -85,7 +84,13 @@
 </div>
 
 <div class="container products-container">
-  <small>Exibindo {products.length} de {productsTotal} produtos</small>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-between">
+      <small>{productsTotal} produtos encontrados</small>
+      <small>Página {actualPage} de {numberOfPages}</small>
+
+    </div>
+  </div>
 	<div class="row">
 		{#each products as product}
 			<div class="col-sm-6 col-md-6 col-lg-3">
@@ -99,7 +104,7 @@
 				<ul class="pagination">
 					<li class="page-item">
 						<button
-							class="page-link text-black {pageNumber === 1 ? 'disabled' : ''}"
+							class="page-link text-black {actualPage === 1 ? 'disabled' : ''}"
 							on:click={() => handleChangePagination('previous')}>Anterior</button
 						>
 					</li>
@@ -107,14 +112,14 @@
 						<li class="page-item">
 							<button
 								on:click={() => handleChangePagination(`${index + 1}`)}
-								class="page-link text-black {index + 1 === pageNumber ? 'active' : ''}"
+								class="page-link text-black {index + 1 === actualPage ? 'active' : ''}"
 								>{index + 1}</button
 							>
 						</li>
 					{/each}
 					<li class="page-item">
 						<button
-							class="page-link text-black {pageNumber === numberOfPages ? 'disabled' : ''}"
+							class="page-link text-black {actualPage === numberOfPages ? 'disabled' : ''}"
 							on:click={() => handleChangePagination('next')}>Próximo</button
 						>
 					</li>
