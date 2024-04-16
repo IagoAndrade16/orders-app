@@ -21,8 +21,8 @@ import type { ButtonClass } from "./types/ProductCardComponentDTOs";
       <small>{Utils.formatNumberToBrl(price)}</small>
     </div>
     <p class="card-text">{text}</p>
-    <a href="/produtos?id={productId}" class="btn btn-{buttonColor} {buttonAdditionalClasses} view-product">Ver produto</a>
   </div>
+  <a href="/produto?id={productId}" class="btn btn-{buttonColor} {buttonAdditionalClasses} view-product rounded-0">Ver produto</a>
 </a>
 
 <style>

@@ -6,16 +6,26 @@ type ProductsServiceBaseOutput<T> = {
   data: T;
 }
 
-export class ProductsService {
-  static async list(input: ListProductsInput): Promise<ProductsServiceBaseOutput<Product[]>> {
+type ListProductsResponse = {
+  products: Product[];
+  total: number;
+}
 
-    const res = await OrdersApi.get(`/product?page=${input.page}&pageSize=${input.pageSize}`);
+export class ProductsService {
+  static async list(input: ListProductsInput): Promise<ProductsServiceBaseOutput<ListProductsResponse>> {
+
+    const res = await OrdersApi.post(`/product/list?page=${input.page}&pageSize=${input.pageSize}`, {
+      name: input.name
+    });
 
     // console.log('res', res.data);
 
     return {
       status: 'SUCESS',
-      data: res.data.products.map((product: Product) => new Product(product)),
+      data: {
+        products: res.data.products.map((product: Product) => new Product(product)),
+        total: res.data.quantity
+      },
     }
     
   }
@@ -24,4 +34,5 @@ export class ProductsService {
 export type ListProductsInput = {
   page: number;
   pageSize: number;
+  name?: string;
 }

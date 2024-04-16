@@ -3,7 +3,6 @@
 	import ProductCard from "../ProductCard.svelte";
 	import { ProductsService } from "../services/ProductsService";
 	import type { ProductCardComponentInput } from "../types/ProductCardComponentDTOs";
-	import { Utils } from "$lib/utils/Utils";
 
 	let products: ProductCardComponentInput[] = [];
 
@@ -13,7 +12,7 @@
 			pageSize: 3,
 		});
 
-		products = listProductsRes.data.map((product) => {
+		products = listProductsRes.data.products.map((product) => {
 			return {
 				buttonColor: 'dark',
 				imgSrc: product.imageUrl,
