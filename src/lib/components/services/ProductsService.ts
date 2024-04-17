@@ -2,7 +2,7 @@ import { Product } from "../entities/Product";
 import { OrdersApi } from "../providers/orders-api/OrdersApi";
 
 type ProductsServiceBaseOutput<T> = {
-  status: 'SUCESS' | 'ERROR' | 'UNAUTHORIZED';
+  status: 'SUCCESS' | 'ERROR' | 'UNAUTHORIZED';
   data: T;
 }
 
@@ -21,13 +21,22 @@ export class ProductsService {
     // console.log('res', res.data);
 
     return {
-      status: 'SUCESS',
+      status: 'SUCCESS',
       data: {
         products: res.data.products.map((product: Product) => new Product(product)),
         total: res.data.quantity
       },
     }
     
+  }
+
+  static async get(id: string): Promise<ProductsServiceBaseOutput<Product>> {
+    const res = await OrdersApi.get(`/product/${id}`);
+
+    return {
+      status: 'SUCCESS',
+      data: new Product(res.data.product),
+    }
   }
 }
 

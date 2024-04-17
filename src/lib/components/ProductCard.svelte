@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Engine } from "$lib/core/Engine";
 	import { Utils } from "$lib/utils/Utils";
 import type { ButtonClass } from "./types/ProductCardComponentDTOs";
 
@@ -13,7 +14,7 @@ import type { ButtonClass } from "./types/ProductCardComponentDTOs";
 
 </script>
 
-<a class="card my-2 shadow" href="/produtos?id={productId}">
+<a class="card my-2 shadow" href="/produto?id={productId}">
   <img src="{imgSrc}" class="card-img-top" alt="Product Card">
   <div class="card-body text-decoration-none">
     <div class="d-flex justify-content-between">
@@ -22,7 +23,7 @@ import type { ButtonClass } from "./types/ProductCardComponentDTOs";
     </div>
     <p class="card-text">{text}</p>
   </div>
-  <a href="/produto?id={productId}" class="btn btn-{buttonColor} {buttonAdditionalClasses} view-product rounded-0">Ver produto</a>
+  <button on:click={() => Engine.navigateTo(`/produto?id=${productId}`)} class="btn btn-{buttonColor} {buttonAdditionalClasses} view-product rounded-0">Ver produto</button>
 </a>
 
 <style>
