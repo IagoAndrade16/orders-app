@@ -1,3 +1,7 @@
+<script>
+	import { ShoppingCartIcon } from "svelte-feather-icons";
+
+</script>
 <nav class="navbar navbar-expand-lg">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -9,22 +13,25 @@
     </button>
     <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-        <li class="nav-item me-4">
+        <li class="nav-item me-lg-4">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
-        <li class="nav-item me-4">
+        <li class="nav-item me-lg-4">
           <a class="nav-link" href="/produtos">Ver produtos</a>
         </li>
 
-				<li class="nav-item me-4">
-          <a class="nav-link" href="#perguntas-frequentes">Perguntas Frequentes</a>
+				<li class="nav-item me-lg-4">
+          <a class="nav-link" href="/#perguntas-frequentes">Perguntas Frequentes</a>
         </li>
       </ul>
-      <div class="d-flex justify-content-center" role="search">
-        <button class="btn btn-outline-dark">
-					Ir para o carrinho
-					<img src="/icons/box-arrow.svg" class="mb-2" height="12" alt="">
-				</button>
+      <div class="d-flex justify-content-center text-center" role="search">
+        <a href="/login" class="text-decoration-none text-black">
+					Entrar &nbsp &nbsp &nbsp
+				</a>
+      </div>
+
+      <div class="text-center">
+        <ShoppingCartIcon size=18 />
       </div>
     </div>
   </div>

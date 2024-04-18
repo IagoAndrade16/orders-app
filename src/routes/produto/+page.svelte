@@ -25,7 +25,6 @@
     }
   }
 
-
   onMount(async() => {
     if(!productId) {
       Engine.back();
@@ -52,6 +51,7 @@
   })
 
 </script>
+
 
 <div class="container my-5 mx-auto">
   <div class="row">

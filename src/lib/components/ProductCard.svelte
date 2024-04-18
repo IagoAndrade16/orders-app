@@ -14,7 +14,10 @@ import type { ButtonClass } from "./types/ProductCardComponentDTOs";
 
 </script>
 
-<a class="card my-2 shadow" href="/produto?id={productId}">
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-missing-attribute -->
+<a class="card my-2 shadow" on:click={() => Engine.navigateTo(`/produto?id=${productId}`)}>
   <img src="{imgSrc}" class="card-img-top" alt="Product Card">
   <div class="card-body text-decoration-none">
     <div class="d-flex justify-content-between">

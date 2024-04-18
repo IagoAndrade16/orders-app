@@ -1,4 +1,3 @@
-import { goto } from "$app/navigation";
 
 export class Engine {
   static back() {
@@ -11,6 +10,6 @@ export class Engine {
 		const tParam = `t=${+new Date()}`;
 		const route = page.includes('?') ? `${page}&${tParam}` : `${page}?${tParam}`;
 
-		await goto(route);
+		window.location.href = route;
 	}
 }
