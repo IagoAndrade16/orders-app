@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import ProductCard from "../ProductCard.svelte";
-	import { ProductsService } from "../services/ProductsService";
 	import type { ProductCardComponentInput } from "../types/ProductCardComponentDTOs";
+	import { ProductsService } from "$lib/services/ProductsService";
 
 	let products: ProductCardComponentInput[] = [];
 

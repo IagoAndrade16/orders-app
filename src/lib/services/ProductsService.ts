@@ -1,5 +1,5 @@
-import { Product } from "../entities/Product";
-import { OrdersApi } from "../providers/orders-api/OrdersApi";
+import { Product } from "$lib/entities/Product";
+import { OrdersApi } from "$lib/providers/orders-api/OrdersApi";
 
 type ProductsServiceBaseOutput<T> = {
   status: 'SUCCESS' | 'ERROR' | 'UNAUTHORIZED';

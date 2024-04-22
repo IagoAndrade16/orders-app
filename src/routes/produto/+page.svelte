@@ -1,13 +1,15 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import ProductCard from "$lib/components/ProductCard.svelte";
-	import type { Product } from "$lib/components/entities/Product";
-	import { ProductsService } from "$lib/components/services/ProductsService";
+	import type { Product } from "$lib/entities/Product";
+	import { ProductsService } from "$lib/services/ProductsService";
 	import type { ProductCardComponentInput } from "$lib/components/types/ProductCardComponentDTOs";
 	import { Engine } from "$lib/core/Engine";
 	import { Utils } from "$lib/utils/Utils";
 	import { onMount } from "svelte";
 	import { ShoppingCartIcon } from "svelte-feather-icons";
+	import { ToastService } from "$lib/services/ToastService";
+  import { cartStore } from "$lib/stores/cart.store";
 
   let quantity = 1;
   let products: ProductCardComponentInput[] = [];
@@ -23,6 +25,21 @@
     if(operation === 'subtract' && quantity > 1) {
       quantity -= 1;
     }
+  }
+
+  const handleAddProductToCart = () => {
+    if(!product) {
+      return;
+    }
+
+    ToastService.show({ message: 'Produto adicionado ao carrinho', type: 'success' });
+    
+    const productAlreadyInCart = $cartStore!.find((productInCart) => productInCart.id === product!.id);
+    // console.log('product', !productAlreadyInCart)
+
+    if(productAlreadyInCart) return;
+    
+    $cartStore = [{ ...product, quantity}, ...$cartStore]
   }
 
   onMount(async() => {
@@ -47,7 +64,7 @@
         text: product.description,
         price: product.price,
       }
-    })
+    });
   })
 
 </script>
@@ -72,7 +89,7 @@
         <button class="btn btn-dark rounded-0" on:click={() => changeProductQuantity('increment')}>+</button>
       </div>
 
-      <button class="btn btn-outline-dark rounded-0 mt-3">
+      <button class="btn btn-outline-dark rounded-0 mt-3" on:click={handleAddProductToCart}>
         Adicionar ao carrinho
         <ShoppingCartIcon size=17 class="mb-1" />
       </button>

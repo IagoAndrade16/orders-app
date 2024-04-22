@@ -1,5 +1,7 @@
 <script>
-	import { ShoppingCartIcon } from "svelte-feather-icons";
+	import { ShoppingCartIcon, Trash2Icon } from "svelte-feather-icons";
+  import { cartStore } from "$lib/stores/cart.store";
+	import { Utils } from "$lib/utils/Utils";
 
 </script>
 <nav class="navbar navbar-expand-lg">
@@ -31,8 +33,61 @@
       </div>
 
       <div class="text-center">
-        <ShoppingCartIcon size=18 />
+        <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+          <ShoppingCartIcon size=18 />
+        </button>
       </div>
     </div>
   </div>
 </nav>
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Meu carrinho</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  {#if $cartStore.length === 0}
+    <div class="offcanvas-body">
+      <p class="text-center text-black">Seu carrinho está vazio.</p>
+    </div>
+  {:else}
+    <div class="offcanvas-body">
+      <div class="offcanvas-body">
+        {#each $cartStore as product, index}
+          <div class="d-flex justify-content-between p-1">
+            <div class="d-flex">
+              <!-- svelte-ignore a11y-img-redundant-alt -->
+              <img src={product.imageUrl} alt="product-image" class="img-fluid img-thumbnail" width="50" height="50">
+              <div class="d-flex flex-column ms-2">
+                <span>{product.name}</span>
+                <span>{Utils.formatNumberToBrl(product.price)}</span>
+              </div>
+            </div>
+            <div class="d-flex">
+              <button class="btn btn-dark rounded-0" on:click={
+                () => $cartStore[index].quantity > 1 ? $cartStore[index].quantity -= 1 : $cartStore[index].quantity}
+              >-</button>
+              <button class="btn btn-light rounded-0" >{product.quantity}</button>
+              <button class="btn btn-dark rounded-0" on:click={() => $cartStore[index].quantity += 1}>+</button>
+              &nbsp
+              <button class="btn btn-outline-danger" on:click={() => $cartStore = $cartStore.filter((_, i) => i !== index)}>
+                <Trash2Icon size=18 />
+              </button>
+            </div>
+          </div>
+
+          <hr>
+        {/each}
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <span>Total</span>
+      <span>{Utils.formatNumberToBrl($cartStore.reduce((acc, product) => acc + product.price * product.quantity, 0))}</span>
+    </div>
+
+    <div class="d-flex">
+      <button class="btn btn-outline-dark w-100 rounded-0 my-2">Finalizar pedido</button>
+    </div>
+  {/if}
+</div>
