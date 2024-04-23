@@ -2,9 +2,9 @@
 	import { SearchIcon } from 'svelte-feather-icons';
 	import { onMount } from 'svelte';
 	import ProductCard from '$lib/components/ProductCard.svelte';
-	import type { ProductCardComponentInput } from '$lib/components/types/ProductCardComponentDTOs';
-	import { ProductsService } from '$lib/components/services/ProductsService';
 	import { page } from '$app/stores';
+	import type { ProductCardComponentInput } from '$lib/components/types/ProductCardComponentDTOs';
+	import { ProductsService } from '$lib/services/ProductsService';
 
 	let products: ProductCardComponentInput[] = [];
 
