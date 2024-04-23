@@ -2,6 +2,8 @@
 	import { ShoppingCartIcon, Trash2Icon } from "svelte-feather-icons";
   import { cartStore } from "$lib/stores/cart.store";
 	import { Utils } from "$lib/utils/Utils";
+	import { Engine } from "$lib/core/Engine";
+	import ProductQuantityComponent from "../ProductQuantityComponent.svelte";
 
 </script>
 <nav class="navbar navbar-expand-lg">
@@ -28,13 +30,17 @@
       </ul>
       <div class="d-flex justify-content-center text-center" role="search">
         <a href="/login" class="text-decoration-none text-black">
-					Entrar &nbsp &nbsp &nbsp
+					Entrar
 				</a>
       </div>
 
       <div class="text-center">
-        <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-          <ShoppingCartIcon size=18 />
+        <button class="btn position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+          <ShoppingCartIcon size=18/>
+          <span class="position-absolute translate-middle badge rounded-pill bg-danger" style="top: 22%; left: 100%;">
+            {$cartStore.length}
+            <span class="visually-hidden">unread messages</span>
+          </span>
         </button>
       </div>
     </div>
@@ -53,41 +59,37 @@
     </div>
   {:else}
     <div class="offcanvas-body">
-      <div class="offcanvas-body">
-        {#each $cartStore as product, index}
-          <div class="d-flex justify-content-between p-1">
-            <div class="d-flex">
-              <!-- svelte-ignore a11y-img-redundant-alt -->
-              <img src={product.imageUrl} alt="product-image" class="img-fluid img-thumbnail" width="50" height="50">
-              <div class="d-flex flex-column ms-2">
-                <span>{product.name}</span>
-                <span>{Utils.formatNumberToBrl(product.price)}</span>
-              </div>
+      {#each $cartStore as product, index}
+        <div class="d-flex justify-content-between p-1">
+          <div class="d-flex">
+            <!-- svelte-ignore a11y-img-redundant-alt -->
+            <img src={product.imageUrl} alt="product-image" class="img-fluid img-thumbnail" width="50" height="50">
+            <div class="d-flex flex-column ms-2">
+              <span>{product.name}</span>
+              <span>{Utils.formatNumberToBrl(product.price)}</span>
             </div>
-            <div class="d-flex">
-              <button class="btn btn-dark rounded-0" on:click={
-                () => $cartStore[index].quantity > 1 ? $cartStore[index].quantity -= 1 : $cartStore[index].quantity}
-              >-</button>
-              <button class="btn btn-light rounded-0" >{product.quantity}</button>
-              <button class="btn btn-dark rounded-0" on:click={() => $cartStore[index].quantity += 1}>+</button>
+          </div>
+          <div class="d-flex">
+            <ProductQuantityComponent bind:quantity={$cartStore[index].quantity} >  
               &nbsp
               <button class="btn btn-outline-danger" on:click={() => $cartStore = $cartStore.filter((_, i) => i !== index)}>
                 <Trash2Icon size=18 />
               </button>
-            </div>
+            </ProductQuantityComponent>
           </div>
+        </div>
 
-          <hr>
-        {/each}
+        <hr>
+      {/each}
+
+      <div class="d-flex justify-content-between">
+        <span>Total</span>
+        <span>{Utils.formatNumberToBrl($cartStore.reduce((acc, product) => acc + product.price * product.quantity, 0))}</span>
       </div>
-    </div>
-    <div class="d-flex justify-content-between">
-      <span>Total</span>
-      <span>{Utils.formatNumberToBrl($cartStore.reduce((acc, product) => acc + product.price * product.quantity, 0))}</span>
-    </div>
-
-    <div class="d-flex">
-      <button class="btn btn-outline-dark w-100 rounded-0 my-2">Finalizar pedido</button>
+  
+      <div class="d-flex">
+        <button class="btn btn-outline-dark w-100 rounded-0 my-2" on:click={() => Engine.navigateTo('/pedidos/checkout')}>Finalizar pedido</button>
+      </div>
     </div>
   {/if}
 </div>

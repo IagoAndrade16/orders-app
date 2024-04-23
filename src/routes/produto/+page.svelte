@@ -10,6 +10,7 @@
 	import { ShoppingCartIcon } from "svelte-feather-icons";
 	import { ToastService } from "$lib/services/ToastService";
   import { cartStore } from "$lib/stores/cart.store";
+	import ProductQuantityComponent from "$lib/components/ProductQuantityComponent.svelte";
 
   let quantity = 1;
   let products: ProductCardComponentInput[] = [];
@@ -32,13 +33,13 @@
       return;
     }
 
-    ToastService.show({ message: 'Produto adicionado ao carrinho', type: 'success' });
-    
     const productAlreadyInCart = $cartStore!.find((productInCart) => productInCart.id === product!.id);
-    // console.log('product', !productAlreadyInCart)
+    if(productAlreadyInCart) {
+      ToastService.show({ message: 'Este produto já existe no seu carrinho de compras.', type: 'info' });
+      return;
+    }
 
-    if(productAlreadyInCart) return;
-    
+    ToastService.show({ message: 'Produto adicionado ao carrinho.', type: 'success' });    
     $cartStore = [{ ...product, quantity}, ...$cartStore]
   }
 
@@ -83,11 +84,7 @@
       <h5 class="text-danger text-center text-lg-start">{Utils.formatNumberToBrl(product?.price ?? 0)}</h5>
       
       <p class="mt-5 text-center text-lg-start">Quantidade:</p>
-      <div class="d-flex align-self-center align-self-lg-start">
-        <button class="btn btn-dark rounded-0 " on:click={() => changeProductQuantity('subtract')}>-</button>
-        <button class="btn btn-light disabled rounded-0" id="quantity-container">{quantity}</button>
-        <button class="btn btn-dark rounded-0" on:click={() => changeProductQuantity('increment')}>+</button>
-      </div>
+      <ProductQuantityComponent bind:quantity={quantity} />
 
       <button class="btn btn-outline-dark rounded-0 mt-3" on:click={handleAddProductToCart}>
         Adicionar ao carrinho

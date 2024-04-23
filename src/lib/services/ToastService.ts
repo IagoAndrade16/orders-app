@@ -17,7 +17,7 @@ export class ToastService {
         '--toastColor': '#fff',
         '--toastBarBackground': toastBackgrounds[config.type],
       },
-      duration: 3000,
+      duration: 1500,
     })
   }
 }
