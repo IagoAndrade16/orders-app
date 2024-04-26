@@ -3,6 +3,7 @@
     export let onClick: ((event: any) => void) | null = null;
     export let disabled: boolean | null = true;
     export let spinner: boolean | null = false;
+    export let textButton: string;
 </script>
 
 <button data-mdb-button-init 
@@ -13,7 +14,7 @@ disabled={disabled}
 on:click={onClick}   
 style="display: inline-flex; align-items: center;"   
 >
-    {loadingText ? loadingText : 'Criar Conta'} 
+    {loadingText ? loadingText : textButton} 
     {#if spinner}
         <div class="spinner-border text-light ms-4" role="status"></div>
     {/if}

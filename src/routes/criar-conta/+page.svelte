@@ -1,8 +1,8 @@
 <script lang="ts">
 	import CreateUserButton from "$lib/components/buttons/CreateUserButton.svelte";
-	import { UsersService } from "$lib/components/services/UsersService";
 	import { Engine } from "$lib/core/Engine";
 	import type { JsObject } from "$lib/core/types/JsObject";
+	import { UsersService } from "$lib/services/UsersService";
 
 
   let values: JsObject = {}
@@ -50,9 +50,9 @@
     divErrorPasswordLength = false;
   }
 
-  const handleCreateUser = async (event: any) => {
-    event.preventDefault(); 
+  const handleCreateUser = async () => {
     errorsForm = 0;
+    errorToCreateUser = false;
 
     const { email } = values;
     const { name } = values;
@@ -132,10 +132,11 @@
               
 
               <CreateUserButton
-              loadingText={loadingText}
-              disabled={disabled}
-              onClick={handleCreateUser}
-              spinner={spinner}
+                loadingText={loadingText}
+                disabled={disabled}
+                onClick={handleCreateUser}
+                spinner={spinner}
+                textButton='Criar Conta'
               />
             </div> 
 
