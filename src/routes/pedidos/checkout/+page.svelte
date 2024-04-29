@@ -1,4 +1,5 @@
 <script>
+	import OrderResumeComponent from "$lib/components/OrderResumeComponent.svelte";
   import ProductQuantityComponent from "$lib/components/ProductQuantityComponent.svelte";
 	import { Engine } from "$lib/core/Engine";
 import { cartStore } from "$lib/stores/cart.store";
@@ -9,7 +10,7 @@ import { cartStore } from "$lib/stores/cart.store";
 <div class="container mt-5">
   <div class="row">
     <div class="col-12">
-      <h4 class="text-center text-lg-start">Finalizar Pedido</h4>
+      <h4 class="text-center text-lg-start">Carrinho</h4>
     </div>
   </div>
 
@@ -19,7 +20,7 @@ import { cartStore } from "$lib/stores/cart.store";
         <ol class="breadcrumb">
           <li class="breadcrumb-item active">Início</li>
           <li class="breadcrumb-item active" aria-current="page">Pedidos</li>
-          <li class="breadcrumb-item" aria-current="page">Finalizar</li>
+          <li class="breadcrumb-item" aria-current="page">Carrinho</li>
         </ol>
       </nav>
     </div>
@@ -68,33 +69,7 @@ import { cartStore } from "$lib/stores/cart.store";
       {/if}
     </div>
 
-    <div class="col-12 col-md-3 order-resume">
-      <div class="card shadow border-0">
-        <div class="card-body">
-          <h5 class="card-title text-center">Resumo do pedido</h5>
-          <hr>
+    <OrderResumeComponent handleNextAction={() => Engine.navigateTo('/pedidos/endereco')}/>
 
-          <p>Detalhes do preço:</p>
-
-          <div class="d-flex justify-content-between">
-            <p>Total</p>
-            <p class="text-bold">{Utils.formatNumberToBrl($cartStore.reduce((acc, product) => acc + (product.price * product.quantity), 0))}</p>
-          </div>
-
-          <div class="d-flex justify-content-between">
-            <p>Descontos</p>
-            <p class="text-bold text-success">{Utils.formatNumberToBrl(0)}</p>
-          </div>
-
-          <hr>
-
-          <div>
-            <button class="btn btn-outline-secondary w-100 mb-2" on:click={() => Engine.navigateTo('/produtos')}>Adicionar mais produtos</button>
-            <button class="btn btn-dark w-100 {$cartStore.length > 0 ?  '' : 'disabled'}">Fazer pedido</button>
-          </div>
-
-        </div>
-      </div>
-    </div>
   </div>
 </div>

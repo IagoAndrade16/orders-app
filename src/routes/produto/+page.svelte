@@ -18,16 +18,6 @@
 
   const  productId = $page.url.searchParams.get('id');
 
-  const changeProductQuantity = (operation: 'increment' | 'subtract') => {
-    if(operation === 'increment') {
-      quantity += 1;
-    }
-
-    if(operation === 'subtract' && quantity > 1) {
-      quantity -= 1;
-    }
-  }
-
   const handleAddProductToCart = () => {
     if(!product) {
       return;
@@ -44,9 +34,9 @@
   }
 
   onMount(async() => {
-    if(!productId) {
-      Engine.back();
-    }
+    // if(!productId) {
+    //   Engine.back();
+    // }
 
     const getProductRes = await ProductsService.get(productId!);
     product = getProductRes.data;

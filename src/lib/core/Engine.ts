@@ -5,10 +5,10 @@ export class Engine {
   }
 
 	static async navigateTo(page: string) {
-		console.log('Engine.navigateTo: ', page);
+		// console.log('Engine.navigateTo: ', page);
 
-		const tParam = `t=${+new Date()}`;
-		const route = page.includes('?') ? `${page}&${tParam}` : `${page}?${tParam}`;
+		// const tParam = `t=${+new Date()}`;
+		const route = page;
 
 		window.location.href = route;
 	}
