@@ -16,7 +16,7 @@
   let products: ProductCardComponentInput[] = [];
   let product: Product | null = null;
 
-  const  productId = $page.url.searchParams.get('id');
+  const productId = $page.url.searchParams.get('id');
 
   const handleAddProductToCart = () => {
     if(!product) {

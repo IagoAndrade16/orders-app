@@ -51,7 +51,7 @@ export class OrdersApi {
 				headers.Authorization = `Bearer ${bearerAuthData.token}`;
 			} else {
 				const basicAuthData = auth as BasicAuthData;
-				const base64 = Buffer.from(`${basicAuthData.document}:${basicAuthData.password}`, 'utf8').toString('base64');
+				const base64 = Buffer.from(`${basicAuthData.email}:${basicAuthData.password}`, 'utf8').toString('base64');
 				headers.Authorization = `Basic ${base64}`;
 			}
 		}
@@ -67,7 +67,7 @@ export class OrdersApi {
 export type AuthData = BasicAuthData | BearerAuthData;
 
 export type BasicAuthData = {
-	document: string;
+	email: string;
 	password: string;
 }
 
