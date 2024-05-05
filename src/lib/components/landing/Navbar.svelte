@@ -4,13 +4,14 @@
 	import { Utils } from "$lib/utils/Utils";
 	import { Engine } from "$lib/core/Engine";
 	import ProductQuantityComponent from "../ProductQuantityComponent.svelte";
+	import { userStore } from "$lib/stores/user.store";
 
 </script>
 <nav class="navbar navbar-expand-lg">
   <div class="container">
     <a class="navbar-brand" href="/">
 			<img src="/favicon.jpeg" height="90" alt="Peppe Forneria logo">
-      <span style="font-size: 1rem;">Peppe Forneria</span>
+      <span class="d-none d-lg-inline-flex" style="font-size: 1rem;">Peppe Forneria</span>
 		</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -29,9 +30,17 @@
         </li>
       </ul>
       <div class="d-flex justify-content-center text-center" role="search">
-        <a href="/login" class="text-decoration-none text-black">
-					Entrar
-				</a>
+        {#if $userStore}
+          <a href="/pedidos" class="text-decoration-none text-black">
+            Meus pedidos
+          </a>
+          &nbsp
+        {:else}
+          <a href="/cadastro" class="text-decoration-none text-black">
+            Cadastrar
+          </a>
+          &nbsp
+        {/if}
       </div>
 
       <div class="text-center">

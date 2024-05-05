@@ -61,7 +61,7 @@
 
 <div class="container my-3">
 	<div class="row">
-		<div class="col-sm-12 col-md-6 col-lg-3">
+		<div class="col-sm-12 col-md-6 col-lg-4">
 			<div class="input-group mb-3 col-3">
 				<span class="input-group-text" id="basic-addon1">
 					<SearchIcon size="15" />
@@ -77,7 +77,7 @@
 			</div>
 		</div>
 
-		<div class="col-sm-3 col-md-2 col-lg-1">
+		<div class="col-3 col-md-2 col-lg-2">
 			<button class="btn btn-dark w-full search-button" on:click={searchProducts}>Buscar</button>
 		</div>
 	</div>
@@ -99,7 +99,7 @@
 		{/each}
 	</div>
 	<div class="row mt-5">
-		<div class="col-12 d-flex justify-content-center items-center">
+		<div class="col-12 d-flex justify-content-center items-center mx-auto">
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
 					<li class="page-item">

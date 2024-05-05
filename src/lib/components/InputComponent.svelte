@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { FormEventHandler } from "svelte/elements";
+
   export let value: string;
   export let label: string;
   export let classes: string | null = null;
@@ -7,11 +9,12 @@
   export let required: boolean = false;
   export let containerClasses: string | null = null;
   export let error: string | null = null;
+  export let onInput: (event: any) => void = () => {};
 </script>
 
 <div class="{containerClasses}">
   <label for="city" class="form-label">{label}</label>
   <span class="{required ? '' : 'd-none'} text-danger">*</span>
-  <input type="text" bind:value={value} class="form-control {classes}" id="{id}" placeholder="{placeholder}">
+  <input on:input={onInput} type="text" bind:value={value} class="form-control {classes}" id="{id}" placeholder="{placeholder}">
   <span class="text-danger">{error ?? ''}</span>
 </div>

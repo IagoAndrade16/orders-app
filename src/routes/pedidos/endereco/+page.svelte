@@ -8,6 +8,8 @@
   import * as yup from 'yup';
 	import { Engine } from "$lib/core/Engine";
   import Swal from 'sweetalert2';
+	import { Utils } from "$lib/utils/Utils";
+	import { Masks } from "$lib/utils/Masks";
 
   let errors: any = null;
   let submitFormButtonDisabled = false;
@@ -116,7 +118,7 @@
           error={errors ? errors.firstName : ''}
         />
 
-        <InputComponent 
+        <InputComponent
           id="last-name"
           label="Sobrenome"
           bind:value={values.lastName}
@@ -131,11 +133,12 @@
           id="phone"
           label="Telefone"
           bind:value={values.phone}
-          classes="{values.phone.length > 3 ? 'is-valid' : ''}"
+          classes="{Validations.isBrazilianPhone(values.phone) ? 'is-valid' : ''}"
           placeholder="Ex: (00) 00000-0000"
           required
           containerClasses="col-md-4 mb-3"
           error={errors ? errors.phone : ''}
+          onInput={(e) => e.target.value = Masks.braziliamPhoneNumber(e.target.value)}
         />
 
         <InputComponent 
@@ -153,11 +156,12 @@
           id="zip-code"
           label="CEP"
           bind:value={values.zipCode}
-          classes="{values.zipCode.length > 3 ? 'is-valid' : ''}"
+          classes="{values.zipCode.length === 9 ? 'is-valid' : ''}"
           placeholder="00000-000"
           required
           containerClasses="col-md-3 mb-3"
           error={errors ? errors.zipCode : ''}
+          onInput={(e) => e.target.value = Masks.zipCode(e.target.value)}
         />
 
         <InputComponent 

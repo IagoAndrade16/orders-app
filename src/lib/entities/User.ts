@@ -1,4 +1,5 @@
 export class User {
+    token: string;
     id: string;
     name: string;
     password: string;
@@ -13,6 +14,6 @@ export class User {
       this.email = data.email;
       this.createdAt = data.createdAt;
       this.updatedAt = data.updatedAt;
-
+      this.token = data.token;
     }
   }

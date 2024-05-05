@@ -26,6 +26,26 @@ type CreateOrderOutput = {
   orderId: string;
 }
 
+export type GetOrderData = {
+  id: string;
+  createdAt: Date,
+  userName: string;
+  userPhone: string;
+  userAddress: string;
+  products: {
+    id: string;
+    name: string;
+    price: number;
+    quantity: number;
+    imgUrl: string;
+  }[];
+}
+
+export type GetOrderOutput = {
+  status: 'SUCCESS' | 'NOT_FOUND' | 'UNAUTHORIZED';
+  data?: GetOrderData;
+}
+
 export class OrdersService {
   static async create(input: CreateOrderInput): Promise<CreateOrderOutput> {
 
@@ -37,6 +57,26 @@ export class OrdersService {
     });
 
     return res.data as CreateOrderOutput;
-    
+  }
+
+  static async get(orderId: string | null): Promise<GetOrderOutput> {
+    const res = await OrdersApi.get(`/orders/${orderId}`);
+
+    if(res.statusCode === 404) {
+      return {
+        status: 'NOT_FOUND',
+      }
+    }
+
+    if(res.statusCode === 416) {
+      return {
+        status: 'UNAUTHORIZED',
+      }
+    }
+
+    return {
+      status: 'SUCCESS',
+      data: res.data as GetOrderOutput['data']
+    } 
   }
 }

@@ -1,3 +1,4 @@
+import type { User } from "$lib/entities/User";
 import { OrdersApi } from "../providers/orders-api/OrdersApi";
 
 type UserServiceInput = {
@@ -8,11 +9,17 @@ type UserServiceInput = {
 
 type UsersServiceOutput = {
     status: 'SUCCESS' | 'UNKNOWN' | 'UNAUTHORIZED';
+    data?: User;
 }
 
 type AuthUserServiceInput = {
     email: string,
     password: string,
+}
+
+type AuthUserServiceOutput = {
+    status: 'SUCCESS' | 'UNKNOWN' | 'UNAUTHORIZED';
+    data?: User;
 }
 
 
@@ -23,7 +30,6 @@ export class UsersService {
             password: input.password,
             email: input.email,
         });
-
         
         if (res.statusCode === 201) {
 			return {
@@ -42,15 +48,20 @@ export class UsersService {
         }        
     }
 
-    static async authUser(input: AuthUserServiceInput): Promise<UsersServiceOutput> {
+    static async authUser(input: AuthUserServiceInput): Promise<AuthUserServiceOutput> {
         const res = await OrdersApi.get(`/users/auth`, {
             email: input.email,
             password: input.password,      
         })
+        console.log('res auth', res)
 
         if (res.statusCode === 200) {
 			return {
                 status: 'SUCCESS',
+                data: {
+                    ...res.data.result.user,
+                    token: res.data.result.auth.token,
+                }
             }
 		}
 
