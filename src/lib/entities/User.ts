@@ -9,6 +9,7 @@ export class User {
     email: string;
     createdAt: Date;
     updatedAt: Date;
+    isOwner: boolean;
 
     constructor(data: User) {
       this.id = data.id;
@@ -18,10 +19,19 @@ export class User {
       this.createdAt = data.createdAt;
       this.updatedAt = data.updatedAt;
       this.token = data.token;
+      this.isOwner = data.isOwner;
     }
 
     static logout() {
       userStore.set(null);
       Engine.navigateTo("/")
+    }
+
+    static validateOwnerPermissions(user: User | null) {
+      if (!user || !user.isOwner) {
+        return false;
+      }
+
+      return true;
     }
   }

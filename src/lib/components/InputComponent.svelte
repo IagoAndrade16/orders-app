@@ -1,6 +1,6 @@
 <script lang="ts">
 	
-  export let value: string | null;
+  export let value: string | number | null;
   export let label: string | null = null;
   export let classes: string | null = null;
   export let id: string;

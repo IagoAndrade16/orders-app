@@ -75,7 +75,7 @@
     });
 
     if (response.status === 'SUCCESS') {
-      Engine.navigateTo('/');
+      Engine.navigateTo('/login');
     }
 
     if (response.status !== 'SUCCESS') {
@@ -126,7 +126,7 @@
 
               {#if errorToCreateUser}
                 <div class="mb-2 text-danger">
-                  Algo deu errado, tente novamente!
+                  Já existe uma conta com esse email, por favor tente outro.
                 </div>
               {/if}
               

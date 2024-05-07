@@ -12,6 +12,8 @@
   let totalPrice = 0;
 
   onMount(async () => {
+    if(!orderId) Engine.navigateTo('/');
+    
     const getOrderRes = await OrdersService.get(orderId);
     
     if(getOrderRes.data) { 

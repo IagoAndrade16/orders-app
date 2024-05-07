@@ -30,16 +30,32 @@
           <a class="nav-link" href="/#perguntas-frequentes">Perguntas Frequentes</a>
         </li>
 
-        <li class="nav-item me-lg-4">
-          <a class="nav-link" href="/pedidos">Encontrar pedido</a>
-        </li>
+        {#if !$userStore}
+          <li class="nav-item me-lg-4">
+            <a class="nav-link" href="/pedidos">Encontrar pedido</a>
+          </li>
+        {/if}
       </ul>
       <div class="d-flex justify-content-center text-center" role="search">
         {#if $userStore}
-          <a href="/pedidos" class="text-decoration-none text-black">
-            Meus pedidos &nbsp &nbsp
-          </a>
 
+          {#if $userStore.isOwner}
+            <li class="nav-item dropdown text-decoration-none">
+              <!-- svelte-ignore a11y-invalid-attribute -->
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Área gerencial
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/gerencial/pedidos">Visualizar pedidos</a></li>
+                <li><a class="dropdown-item" href="/gerencial/produtos">Gerenciar produtos</a></li>
+              </ul>
+            </li>
+            &nbsp &nbsp
+          {:else}
+            <a href="/pedidos" class="text-decoration-none text-black">
+              Meus pedidos &nbsp &nbsp
+            </a>
+          {/if}
           &nbsp
         {:else}
           <a href="/criar-conta" class="text-decoration-none text-black">
@@ -49,7 +65,7 @@
         {/if}
       </div>
 
-      <div class="text-center">
+      <div class="mt-1">
         <!-- svelte-ignore a11y-invalid-attribute -->
         {#if $userStore}
           <a href="#" class="text-black text-decoration-none" on:click={User.logout}>
@@ -120,3 +136,10 @@
     </div>
   {/if}
 </div>
+
+
+<style>
+  li {
+    list-style-type: none;
+  }
+</style>
