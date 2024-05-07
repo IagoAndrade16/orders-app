@@ -56,7 +56,7 @@
 
     if (response.status === 'SUCCESS') {
       $userStore = response.data ?? null;
-      // Engine.navigateTo('/');
+      Engine.navigateTo('/');
     }
 
     if (response.status !== 'SUCCESS') {

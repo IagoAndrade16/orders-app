@@ -53,7 +53,7 @@ export class UsersService {
             email: input.email,
             password: input.password,      
         })
-        console.log('res auth', res)
+        // console.log('res auth', res)
 
         if (res.statusCode === 200) {
 			return {

@@ -8,6 +8,10 @@ export class Validations {
     return /^\d{5}-\d{3}$/.test(zipCode);
   }
 
+	static isValidEmail(email: string): boolean {
+		return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+	}
+
   static async validateYupSchema(schema: any, data: object): Promise<object | null> {
 		try {
 			// `abortEarly: false` to get all the errors

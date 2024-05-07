@@ -76,12 +76,12 @@
       <p class="mt-5 text-center text-lg-start">Quantidade:</p>
       <ProductQuantityComponent bind:quantity={quantity} />
 
-      <button class="btn btn-outline-dark rounded-0 mt-3" on:click={handleAddProductToCart}>
+      <button class="btn btn-outline-dark rounded-0 my-5" on:click={handleAddProductToCart}>
         Adicionar ao carrinho
         <ShoppingCartIcon size=17 class="mb-1" />
       </button>
 
-      <button class="btn btn-dark rounded-0 mt-3 mb-5">Comprar agora</button>
+      <!-- <button class="btn btn-dark rounded-0 mt-3 mb-5">Comprar agora</button> -->
 
       <div id="product-description my-5">
         <h4 class="text-dark">Descrição do produto</h4>

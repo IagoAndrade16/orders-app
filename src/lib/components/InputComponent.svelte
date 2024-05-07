@@ -1,8 +1,7 @@
 <script lang="ts">
-	import type { FormEventHandler } from "svelte/elements";
-
-  export let value: string;
-  export let label: string;
+	
+  export let value: string | null;
+  export let label: string | null = null;
   export let classes: string | null = null;
   export let id: string;
   export let placeholder: string;

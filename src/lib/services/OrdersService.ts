@@ -4,6 +4,7 @@ type CreateOrderInput = {
   firstName: string;
   lastName: string;
   phone: string;
+  email: string;
   city: string;
   zipCode: string;
   neighborhood: string;
@@ -46,12 +47,31 @@ export type GetOrderOutput = {
   data?: GetOrderData;
 }
 
+export type FetchOrdersInput = {
+  email?: string;
+  page: number;
+  pageSize: number;
+}
+
+export type FetchOrdersOutput = {
+  status: 'SUCCESS' | 'UNAUTHORIZED';
+  data?: GetOrderData[];
+}
+
+export enum OrderStatus {
+  WAIT_PAYMENT = 'Aguardando pagamento',
+  PREPARE_LIST = 'Em preparação',
+  DELIVERY_ROUTE = 'Rota de entrega',
+  FINISHED = 'Entregue'
+}
+
 export class OrdersService {
   static async create(input: CreateOrderInput): Promise<CreateOrderOutput> {
 
     const res = await OrdersApi.post(`/orders`, {
       userName: `${input.firstName} ${input.lastName}`,
       userPhone: input.phone,
+      userEmail: input.email,
       products: input.products,
       userAddress: `${input.city} - ${input.zipCode}, ${input.neighborhood}, ${input.street}, ${input.number}, ${input.complement}`
     });
@@ -77,6 +97,19 @@ export class OrdersService {
     return {
       status: 'SUCCESS',
       data: res.data as GetOrderOutput['data']
+    } 
+  }
+
+  static async fetch(input: FetchOrdersInput): Promise<FetchOrdersOutput> {
+    const res = await OrdersApi.post(`/orders/fetch?page=${input.page}&pageSize=${input.pageSize}`, {
+      email: input.email
+    });
+
+    // console.log('fetch orders', res.data)
+
+    return {
+      status: 'SUCCESS',
+      data: res.data as GetOrderData[]
     } 
   }
 }

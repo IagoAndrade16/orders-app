@@ -1,3 +1,6 @@
+import { Engine } from "$lib/core/Engine";
+import { userStore } from "$lib/stores/user.store";
+
 export class User {
     token: string;
     id: string;
@@ -15,5 +18,10 @@ export class User {
       this.createdAt = data.createdAt;
       this.updatedAt = data.updatedAt;
       this.token = data.token;
+    }
+
+    static logout() {
+      userStore.set(null);
+      Engine.navigateTo("/")
     }
   }
