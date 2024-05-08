@@ -3,6 +3,7 @@
 	import { Engine } from "$lib/core/Engine";
   import CreateUserButton from "$lib/components/buttons/CreateUserButton.svelte";
 	import { UsersService } from "$lib/services/UsersService";
+	import { userStore } from "$lib/stores/user.store";
 
   let values: JsObject = {}
   let spinner: boolean = false;
@@ -53,7 +54,8 @@
       password
     });
 
-    if (response.status === 'SUCCESS') {    
+    if (response.status === 'SUCCESS') {
+      $userStore = response.data ?? null;
       Engine.navigateTo('/');
     }
 

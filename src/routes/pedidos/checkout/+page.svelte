@@ -64,12 +64,14 @@ import { cartStore } from "$lib/stores/cart.store";
           </div>
         </div>
         {/each}
-      {:else}
+        {:else}
         <p>Seu carrinho está vazio.</p>
+        {/if}
+      </div>
+      
+      {#if $cartStore.length > 0}
+        <OrderResumeComponent handleNextAction={() => Engine.navigateTo('/pedidos/endereco')}/>
       {/if}
-    </div>
-
-    <OrderResumeComponent handleNextAction={() => Engine.navigateTo('/pedidos/endereco')}/>
 
   </div>
 </div>

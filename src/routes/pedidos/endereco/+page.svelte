@@ -1,13 +1,14 @@
 <script lang="ts">
 
 	import InputComponent from "$lib/components/InputComponent.svelte";
-  import OrderResumeComponent from "$lib/components/OrderResumeComponent.svelte";
-	import { OrdersService } from "$lib/services/OrdersService";
-	import { Validations } from "$lib/utils/Validations";
-  import { cartStore } from "$lib/stores/cart.store";
-  import * as yup from 'yup';
+	import OrderResumeComponent from "$lib/components/OrderResumeComponent.svelte";
 	import { Engine } from "$lib/core/Engine";
-  import Swal from 'sweetalert2';
+	import { OrdersService } from "$lib/services/OrdersService";
+	import { cartStore } from "$lib/stores/cart.store";
+	import { Masks } from "$lib/utils/Masks";
+	import { Validations } from "$lib/utils/Validations";
+	import Swal from 'sweetalert2';
+	import * as yup from 'yup';
 
   let errors: any = null;
   let submitFormButtonDisabled = false;
@@ -17,6 +18,7 @@
     firstName: string;
     lastName: string;
     phone: string;
+    email: string;
     city: string;
     zipCode: string;
     neighborhood: string;
@@ -34,7 +36,8 @@
     neighborhood: '',
     street: '',
     number: '',
-    complement: ''
+    complement: '',
+    email: ''
   }
 
   const formSchema = yup.object().shape({
@@ -46,6 +49,7 @@
     neighborhood: yup.string().min(3, 'O campo bairro deve conter no mínimo 3 caracteres').required('O campo bairro é obrigatório'),
     street: yup.string().min(3, 'O campo rua deve conter no mínimo 3 caracteres').required('O campo rua é obrigatório'),
     number: yup.string().min(1, 'O campo número deve conter no mínimo 1 caracter').required('O campo número é obrigatório'),
+    email: yup.string().email('O e-mail digitado é inválido').required('O campo email é obrigatório'),
     complement: yup.string()
   });
 
@@ -64,6 +68,7 @@
       number: values.number,
       phone: values.phone,
       street: values.street,
+      email: values.email,
       zipCode: values.zipCode,
       products: $cartStore.map(product => ({ productId: product.id, quantityOfProduct: product.quantity }))
     })
@@ -116,7 +121,7 @@
           error={errors ? errors.firstName : ''}
         />
 
-        <InputComponent 
+        <InputComponent
           id="last-name"
           label="Sobrenome"
           bind:value={values.lastName}
@@ -131,12 +136,23 @@
           id="phone"
           label="Telefone"
           bind:value={values.phone}
-          classes="{values.phone.length > 3 ? 'is-valid' : ''}"
+          classes="{Validations.isBrazilianPhone(values.phone) ? 'is-valid' : ''}"
           placeholder="Ex: (00) 00000-0000"
           required
           containerClasses="col-md-4 mb-3"
           error={errors ? errors.phone : ''}
+          onInput={(e) => e.target.value = Masks.braziliamPhoneNumber(e.target.value)}
         />
+
+        <InputComponent 
+          id="email"
+          label="E-mail"
+          bind:value={values.email}
+          classes="{Validations.isValidEmail(values.email) ? 'is-valid' : ''}"
+          placeholder="Digite seu e-mail"
+          required
+          containerClasses="col-md-6 mb-3"
+          error={errors ? errors.email : ''} />
 
         <InputComponent 
           id="city"
@@ -153,11 +169,12 @@
           id="zip-code"
           label="CEP"
           bind:value={values.zipCode}
-          classes="{values.zipCode.length > 3 ? 'is-valid' : ''}"
+          classes="{values.zipCode.length === 9 ? 'is-valid' : ''}"
           placeholder="00000-000"
           required
           containerClasses="col-md-3 mb-3"
           error={errors ? errors.zipCode : ''}
+          onInput={(e) => e.target.value = Masks.zipCode(e.target.value)}
         />
 
         <InputComponent 
