@@ -53,7 +53,7 @@
       password
     });
 
-    if (response.status === 'SUCCESS') {
+    if (response.status === 'SUCCESS') {    
       Engine.navigateTo('/');
     }
 
