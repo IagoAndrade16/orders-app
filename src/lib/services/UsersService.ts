@@ -1,6 +1,7 @@
 import type { User } from "$lib/entities/User";
 import { OrdersApi } from "../providers/orders-api/OrdersApi";
 
+
 type UserServiceInput = {
     name: string,
     password: string,
@@ -31,7 +32,7 @@ export class UsersService {
             email: input.email,
         });
         
-        if (res.statusCode === 201) {
+        if (res.statusCode === 201) {      
 			return {
                 status: 'SUCCESS',
             }
@@ -44,7 +45,7 @@ export class UsersService {
 		}
 
         return {
-            status: 'UNKNOWN'
+            status: 'UNKNOWN',
         }        
     }
 
@@ -68,11 +69,13 @@ export class UsersService {
         if (res.statusCode === 416) {
 			return {
                 status: 'UNAUTHORIZED',
+                data: res.data
             }
 		}
 
         return {
-            status: 'UNKNOWN'
+            status: 'UNKNOWN',
+            data: res.data
         }     
     }
 }
