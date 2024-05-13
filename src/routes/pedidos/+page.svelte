@@ -3,6 +3,7 @@
 	import { Order } from '$lib/entities/Order';
 	import { OrderStatus, OrdersService, type GetOrderData } from '$lib/services/OrdersService';
 	import { userStore } from '$lib/stores/user.store';
+	import { Masks } from '$lib/utils/Masks';
 	import { Validations } from '$lib/utils/Validations';
 	import { onMount } from 'svelte';
 	import { SearchIcon } from 'svelte-feather-icons';
@@ -81,6 +82,9 @@
             status={OrderStatus.WAIT_PAYMENT}
             total={Order.calcTotalPrice(order)}
             products={order.products}
+            userName={order?.userName}
+            userEmail={order?.userEmail}
+            userPhone={Masks.braziliamPhoneNumber(order?.userPhone)}
           />
         </div>
       {/each}

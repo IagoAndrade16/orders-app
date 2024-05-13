@@ -3,6 +3,7 @@
 	import InputComponent from "$lib/components/InputComponent.svelte";
 	import OrderResumeComponent from "$lib/components/OrderResumeComponent.svelte";
 	import { Engine } from "$lib/core/Engine";
+	import type { OrderPaymentMethod } from "$lib/entities/Order";
 	import { OrdersService } from "$lib/services/OrdersService";
 	import { cartStore } from "$lib/stores/cart.store";
 	import { Masks } from "$lib/utils/Masks";
@@ -25,6 +26,7 @@
     street: string;
     number: string;
     complement: string;
+    paymentMethod: OrderPaymentMethod;
   }
 
   const values: FinishOrderForm = {
@@ -37,7 +39,8 @@
     street: '',
     number: '',
     complement: '',
-    email: ''
+    email: '',
+    paymentMethod: 'pix',
   }
 
   const formSchema = yup.object().shape({
@@ -56,8 +59,9 @@
   const handleCreateOrder = async () => {
     errors = null;
     errors = await Validations.validateYupSchema(formSchema, values);
-    if(errors) return;
 
+    if(errors) return;
+    
     submitFormButtonDisabled = true;
     const res = await OrdersService.create({
       city: values.city,
@@ -70,7 +74,8 @@
       street: values.street,
       email: values.email,
       zipCode: values.zipCode,
-      products: $cartStore.map(product => ({ productId: product.id, quantityOfProduct: product.quantity }))
+      products: $cartStore.map(product => ({ productId: product.id, quantityOfProduct: product.quantity })),
+      paymentMethod: values.paymentMethod
     })
 
     if(res) {
@@ -209,6 +214,16 @@
           containerClasses="col-md-3 mb-3"
           error={errors ? errors.number : ''}
         />
+
+        <div class="col-12 col-md-4 my-2">
+          <label for="payment-method" class="mb-2">Forma de pagamento:</label>
+          <select bind:value={values.paymentMethod} name="payment-method" id="payment-method" class="form-control">
+            <option value="credit-card">Cartão de crédito (pagamento na hora da entrega)</option>
+            <option value="debit-card">Cartão de débito (pagamento na hora da entrega)</option>
+            <option value="cash">Dinheiro (pagamento na hora da entrega)</option>
+            <option selected value="pix">Pix</option>
+          </select>
+        </div>
 
         <InputComponent 
           id="complement"

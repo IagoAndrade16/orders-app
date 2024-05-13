@@ -47,7 +47,16 @@
         Pagamento
         <CreditCardIcon />
       </h4>
-      <p>Realize o PIX para a chave: <b> CHAVE PIX </b> no valor de <b>{Utils.formatNumberToBrl(totalPrice)}</b> e pronto! Seu pedido já estará em estágio de preparo.</p>
+      <p>
+        {#if order.paymentMethod === 'pix'}
+          Realize o PIX para a chave: <b> CHAVE PIX </b> no valor de <b>{Utils.formatNumberToBrl(totalPrice)}
+          </b> e pronto! Seu pedido já estará em estágio de preparo.
+
+        {:else}
+          O pagamento no valor de <b>{Utils.formatNumberToBrl(totalPrice)}
+          </b> deverá ser feito no ato da entrega do pedido.
+        {/if}
+      </p>
     </div>
 
     <div class="col-12 ml-5 col-lg-4 p-3 text-center">
