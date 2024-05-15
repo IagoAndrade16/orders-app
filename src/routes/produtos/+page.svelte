@@ -11,8 +11,8 @@
 	let actualPage: number = parseInt($page.url.searchParams.get('page') || '1');
 	let pageSize: number = 24;
 	let numberOfPages: number = 1;
-  let productsTotal: number = 0;
-  let searchValue: string | undefined = undefined;
+  	let productsTotal: number = 0;
+  	let searchValue: string | undefined = undefined;
 
 	const handleChangePagination = async (newPage: string) => {
     if(newPage === 'previous') {

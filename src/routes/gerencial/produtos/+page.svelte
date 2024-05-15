@@ -6,6 +6,9 @@
   import ProductCard from "$lib/components/ProductCard.svelte";
 	import { PlusIcon } from "svelte-feather-icons";
 	import { Engine } from "$lib/core/Engine";
+	import { userStore } from "$lib/stores/user.store";
+	import { ToastService } from "$lib/services/ToastService";
+	import { DialogService } from "$lib/services/DialogService";
 
   let allProducts: Product[] = [];
   let filteredProducts: Product[] = [];
@@ -18,6 +21,41 @@
       });
     } else {
       filteredProducts = allProducts;
+    }
+  }
+
+  const handleDeleteProduct = async (productId: string) => {
+    const { isConfirmed: confirmDelete } = await DialogService.dialog({
+      title: "Deseja realmente excluir este produto?",
+      showDenyButton: true,
+      confirmButtonText: "Excluir",
+      denyButtonText: `Não deletar`,
+      cancelButtonText: `Cancelar`,
+    });
+
+    if(!confirmDelete) return;
+
+    const token = $userStore?.token
+    const response = await ProductsService.deleteProduct({
+      productId,
+      userId: $userStore!.id,
+    }, token!)
+
+    if(response.status === 'SUCCESS') {
+      ToastService.show({
+        message: 'Produto excluído com sucesso',
+        type: 'info',
+        duration: 3000
+      });
+      
+      filteredProducts = filteredProducts.filter((product) => product.id !== productId);
+      
+    } else {
+      ToastService.show({
+        message: 'Erro ao excluir produto',
+        type: 'error',
+        duration: 3000
+      })
     }
   }
 
@@ -84,6 +122,7 @@
           price={product.price}
           productId={product.id}
           isAdmin
+          handleDeleteProduct={handleDeleteProduct}
         />
       </div>
     {/each}

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Engine } from "$lib/core/Engine";
-	import { ProductsService } from "$lib/services/ProductsService";
 	import { Utils } from "$lib/utils/Utils";
 	import { Edit2Icon, Trash2Icon } from "svelte-feather-icons";
-import type { ButtonClass } from "./types/ProductCardComponentDTOs";
+	import type { ButtonClass } from "./types/ProductCardComponentDTOs";
+
 
   export let imgSrc: string | null;
   export let title: string;
@@ -11,22 +11,16 @@ import type { ButtonClass } from "./types/ProductCardComponentDTOs";
   export let productId: string;
   export let buttonAdditionalClasses: string | null = '';
   export let isAdmin: boolean = false;
-  
   export let buttonColor: ButtonClass = 'dark';
 
-  const handleDeleteProduct = async () => {
-    // const response = await ProductsService.delete(productId);
-  }
+  export let handleDeleteProduct: (productId: string) => {};
 
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-missing-attribute -->
-<a 
-  class="card my-2 shadow text-decoration-none" 
-  on:click={() => Engine.navigateTo(`/produto?id=${productId}`)}
-  >
+<a class="card my-2 shadow text-decoration-none">
   <img src="{imgSrc}" class="card-img-top" alt="Product Card">
   <div class="card-body text-decoration-none text-center">
     <h4 class="card-title text-center">{title}</h4>
@@ -34,12 +28,12 @@ import type { ButtonClass } from "./types/ProductCardComponentDTOs";
   </div>
   {#if isAdmin}
   <div class="d-flex">
-    <button on:click={() => Engine.navigateTo(`/produto/atualizar?id=${productId}`)} class="btn btn-warning text-white {buttonAdditionalClasses} view-product rounded-0">
+    <button on:click={() => Engine.navigateTo(`/gerencial/produtos/editar?id=${productId}`)} class="btn btn-warning text-white {buttonAdditionalClasses} view-product rounded-0">
       Editar produto
       <Edit2Icon size=16 />
     </button>
     
-    <button on:click={handleDeleteProduct} class="btn btn-danger {buttonAdditionalClasses} view-product rounded-0">
+    <button on:click={() => handleDeleteProduct(productId)} class="btn btn-danger {buttonAdditionalClasses} view-product rounded-0">
       Excluir
       <Trash2Icon size=16 />
     </button>
