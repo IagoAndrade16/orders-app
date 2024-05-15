@@ -18,6 +18,13 @@ type ListProductsResponse = {
   total: number;
 }
 
+type DeleteProduct = {
+  userId: string;
+  productId: string;
+}
+
+
+
 export class ProductsService {
   static async create(input: CreateProductDTO, token: string): Promise<ProductsServiceBaseOutput<void>> {
 
@@ -63,6 +70,49 @@ export class ProductsService {
     return {
       status: 'SUCCESS',
       data: new Product(res.data.product),
+    }
+  }
+
+  static async updateProduct(data: CreateProductDTO, id: string, token: string): Promise<ProductsServiceBaseOutput<void>> {
+    const res = await OrdersApi.patch(`/product/${id}`, {
+      ...data
+    }, { token }) 
+
+    if (res.statusCode === 204) {
+      return {
+        status: 'SUCCESS',
+        data: undefined
+      }
+    }
+    
+    if (res.statusCode === 401) {
+      return {
+        status: 'UNAUTHORIZED',
+        data: undefined
+      }
+    }
+
+    else {
+      return {
+        status: 'ERROR',
+        data: undefined
+      }
+    }
+  }
+
+  static async deleteProduct(data: DeleteProduct, token: string): Promise<ProductsServiceBaseOutput<void>> {
+    const res = await OrdersApi.delete(`/product/${data.productId}`, {}, { token });
+    
+    if (res.statusCode === 204) {
+      return {
+        status: 'SUCCESS',
+        data: undefined
+      }
+    } else {
+      return {
+        status: 'ERROR',
+        data: undefined
+      }
     }
   }
 }

@@ -85,6 +85,7 @@
           productId={product.id}
           text={product.description}
           isAdmin
+          userId={product.userId}
         />
       </div>
     {/each}

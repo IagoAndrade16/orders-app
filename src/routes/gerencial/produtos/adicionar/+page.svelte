@@ -9,7 +9,7 @@
 	import { userStore } from "$lib/stores/user.store";
 	import { onMount } from "svelte";
 	import { User } from "$lib/entities/User";
-
+  
 
   let errors: any = null;
   let loading: boolean = false;
