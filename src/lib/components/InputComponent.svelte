@@ -1,7 +1,7 @@
 <script lang="ts">
 	
   export let value: string | number | null;
-  export let label: string | null = null;
+  export let label: string | null = '';
   export let classes: string | null = null;
   export let id: string;
   export let placeholder: string;

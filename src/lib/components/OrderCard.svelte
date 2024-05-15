@@ -2,6 +2,7 @@
 	import { Engine } from "$lib/core/Engine";
 import { OrderStatus } from "$lib/services/OrdersService";
 	import { Utils } from "$lib/utils/Utils";
+	import OrderStatusComponent from "./OrderStatusComponent.svelte";
 
   export let id: string;
   export let status: OrderStatus;
@@ -31,10 +32,9 @@ import { OrderStatus } from "$lib/services/OrdersService";
 <div class="card mb-2">
   <div class="card-body">
     <h5 class="card-title">Pedido #{id}</h5>
-    <p class="card-text">
-      Status:
-      <span class="badge text-white {getStatusBadgeColor()}">{status}</span>
-    </p>
+    
+    <OrderStatusComponent status={status} />
+
     <p class="card-text">Data: {createdAt}</p>
     <p class="card-text">Nome no pedido: {userName ?? 'Não informado'}</p>
     <p class="card-text">Email do cliente: {userEmail ?? 'Não informado'}</p>

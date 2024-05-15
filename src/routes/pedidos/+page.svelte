@@ -79,7 +79,7 @@
           <OrderCard
             createdAt={order.createdAt}
             id={order.id}
-            status={OrderStatus.WAIT_PAYMENT}
+            status={order.status}
             total={Order.calcTotalPrice(order)}
             products={order.products}
             userName={order?.userName}

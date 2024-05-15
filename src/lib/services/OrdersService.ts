@@ -37,6 +37,7 @@ export type GetOrderData = {
   userPhone: string;
   userAddress: string;
   userEmail: string;
+  status: OrderStatus;
   paymentMethod: OrderPaymentMethod;
   products: {
     id: string;
@@ -58,13 +59,21 @@ export type FetchOrdersInput = {
   pageSize: number;
 }
 
+export type UpdateOrderStatusInput = {
+  orderId: string;
+  status: OrderStatus;
+}
+
+export type UpdateOrderStatusOutput = {
+  status: 'SUCCESS' | 'UNAUTHORIZED' | 'UNKNOWN';
+}
+
 export type FetchOrdersOutput = {
   status: 'SUCCESS' | 'UNAUTHORIZED';
   data?: GetOrderData[];
 }
 
 export enum OrderStatus {
-  WAIT_PAYMENT = 'Aguardando pagamento',
   PREPARE_LIST = 'Em preparação',
   DELIVERY_ROUTE = 'Rota de entrega',
   FINISHED = 'Entregue'
@@ -117,5 +126,27 @@ export class OrdersService {
       status: 'SUCCESS',
       data: res.data as GetOrderData[]
     } 
+  }
+
+  static async updateStatus(input: UpdateOrderStatusInput, token: string): Promise<UpdateOrderStatusOutput> {
+    const res = await OrdersApi.patch(`/orders/${input.orderId}/status`, {
+      newStatus: input.status
+    }, { token });
+
+    if(res.statusCode === 416) {
+      return {
+        status: 'UNAUTHORIZED',
+      }
+    }
+
+    if(res.statusCode === 204) {
+      return {
+        status: 'SUCCESS',
+      }
+    }
+
+    return {
+      status: 'UNKNOWN',
+    }
   }
 }

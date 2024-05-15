@@ -1,27 +1,6 @@
 import type { GetOrderData, OrderProductDTO } from "$lib/services/OrdersService";
 
 export class Order {
-  // id: string;
-  // userName: string;
-  // userPhone: string;
-  // userAddress: string;
-  // userEmail: string;
-  // products: OrderProductDTO[];
-  // createdAt: Date;
-  // updatedAt: Date;
-  // paymentMethod: OrderPaymentMethod;
-
-  // constructor(input: Order){
-  //   this.id = input.id;
-  //   this.userName = input.userName;
-  //   this.userPhone = input.userPhone;
-  //   this.userAddress = input.userAddress;
-  //   this.userEmail = input.userEmail;
-  //   this.products = input.products;
-  //   this.createdAt = input.createdAt;
-  //   this.updatedAt = input.updatedAt;
-  //   this.paymentMethod = input.paymentMethod;
-  // }
 
   constructor(
     private id: string,
