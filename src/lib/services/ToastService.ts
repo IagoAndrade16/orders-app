@@ -3,7 +3,7 @@ import { toast } from "@zerodevx/svelte-toast"
 type ToastTypes = 'success' | 'error' | 'info' | 'warning'
 
 export class ToastService {
-  static show = (config: { message: string, type: ToastTypes }) => {
+  static show = (config: { message: string, type: ToastTypes, duration?: number }) => {
     const toastBackgrounds = {
       success: '#4caf50',
       error: '#f44336',
@@ -17,7 +17,7 @@ export class ToastService {
         '--toastColor': '#fff',
         '--toastBarBackground': toastBackgrounds[config.type],
       },
-      duration: 1500,
+      duration: config.duration ?? 1500,
     })
   }
 }

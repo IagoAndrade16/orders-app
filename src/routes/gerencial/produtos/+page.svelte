@@ -83,7 +83,6 @@
           title={product.name}
           price={product.price}
           productId={product.id}
-          text={product.description}
           isAdmin
         />
       </div>

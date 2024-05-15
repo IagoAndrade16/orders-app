@@ -22,13 +22,14 @@
       order!.status = status;
       ToastService.show({
         message: 'Status do pedido atualizado com sucesso',
-        type: 'success'
+        type: 'success',
+        duration: 3500,
       });
       getStatusBadgeColor(status);
     } else {
       ToastService.show({
         message: 'Erro ao atualizar status do pedido.',
-        type: 'error'
+        type: 'error',
       })
     }
   }
@@ -55,9 +56,9 @@
       <section class="vh-70 gradient-custom">
         <div class="container h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-7">
               <div class="card text-black">
-                <div class="card-body p-5 text-center">
+                <div class="card-body p-5 text-start">
                   <h4>Pedido {order?.id}</h4>
                   <p>Feito em {order.createdAt}</p>
                   <p>E-mail: {order.userEmail ? order.userEmail : 'Não informado'}</p>
@@ -70,8 +71,19 @@
                     status={order.status}
                     bind:getStatusBadgeColor={getStatusBadgeColor}
                   />
+
+                  <p>
+                    <b>Produtos:</b>
+                  </p>
+
+                  {#each order.products as product}
+                    <div class="d-flex">
+                      <p>{product.quantity}x {product.name} - </p>
+                      <p>&nbsp {Utils.formatNumberToBrl(product.price * product.quantity)}</p>
+                    </div>
+                  {/each}
                   
-                  <div class="d-flex justify-content-center gap-2">
+                  <div class="d-flex gap-2">
                     <button class="btn btn-primary" on:click={() => window.print()}>Imprimir</button>
                     <button on:click={() => Engine.back()} class="btn btn-secondary">Voltar</button>
                     

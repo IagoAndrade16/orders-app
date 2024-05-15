@@ -7,7 +7,6 @@ import type { ButtonClass } from "./types/ProductCardComponentDTOs";
 
   export let imgSrc: string | null;
   export let title: string;
-  export let text: string;
   export let price: number;
   export let productId: string;
   export let buttonAdditionalClasses: string | null = '';
@@ -24,14 +23,14 @@ import type { ButtonClass } from "./types/ProductCardComponentDTOs";
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-missing-attribute -->
-<a class="card my-2 shadow text-decoration-none" on:click={() => Engine.navigateTo(`/produto?id=${productId}`)}>
+<a 
+  class="card my-2 shadow text-decoration-none" 
+  on:click={() => Engine.navigateTo(`/produto?id=${productId}`)}
+  >
   <img src="{imgSrc}" class="card-img-top" alt="Product Card">
-  <div class="card-body text-decoration-none">
-    <div class="d-flex justify-content-between">
-      <h5 class="card-title">{title}</h5>
-      <small>{Utils.formatNumberToBrl(price)}</small>
-    </div>
-    <p class="card-text">{text}</p>
+  <div class="card-body text-decoration-none text-center">
+    <h4 class="card-title text-center">{title}</h4>
+    <span class="text-center">{Utils.formatNumberToBrl(price)}</span>
   </div>
   {#if isAdmin}
   <div class="d-flex">
