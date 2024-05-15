@@ -1,3 +1,4 @@
+import type { OrderPaymentMethod } from "$lib/entities/Order";
 import { OrdersApi } from "$lib/providers/orders-api/OrdersApi";
 
 type CreateOrderInput = {
@@ -12,9 +13,10 @@ type CreateOrderInput = {
   number: string;
   complement: string;
   products: OrderProductDTO[];
+  paymentMethod: OrderPaymentMethod;
 }
 
-type OrderProductDTO = {
+export type OrderProductDTO = {
   productId: string;
   quantityOfProduct: number;
 }
@@ -25,6 +27,7 @@ type CreateOrderOutput = {
   userAddress: string;
   products: OrderProductDTO[];
   orderId: string;
+  paymentMethod: OrderPaymentMethod;
 }
 
 export type GetOrderData = {
@@ -33,6 +36,8 @@ export type GetOrderData = {
   userName: string;
   userPhone: string;
   userAddress: string;
+  userEmail: string;
+  paymentMethod: OrderPaymentMethod;
   products: {
     id: string;
     name: string;
@@ -73,6 +78,7 @@ export class OrdersService {
       userPhone: input.phone,
       userEmail: input.email,
       products: input.products,
+      paymentMethod: input.paymentMethod,
       userAddress: `${input.city} - ${input.zipCode}, ${input.neighborhood}, ${input.street}, ${input.number}, ${input.complement}`
     });
 
