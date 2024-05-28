@@ -21,3 +21,9 @@ export class Order {
 }
 
 export type OrderPaymentMethod = "cash" | "credit-card" | "pix" | "debit-card";
+export enum OrderPaymentMethodEnum {
+  cash = "Em dinheiro",
+  'credit-card' = "Cartão de crédito",
+  pix = "Pix",
+  'debit-card' = "Cartão de débito"
+}

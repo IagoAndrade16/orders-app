@@ -13,6 +13,7 @@
   export let isAdmin: boolean = false;
   export let buttonColor: ButtonClass = 'dark';
 
+  // make this function optional in component
   export let handleDeleteProduct: (productId: string) => {};
 
 </script>

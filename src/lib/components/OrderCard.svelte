@@ -14,16 +14,6 @@ import { OrderStatus } from "$lib/services/OrdersService";
   export let userPhone: string | null = null;
   export let isAdmin: boolean = false;
 
-  const getStatusBadgeColor = () => {
-    const badgeColors = {
-      [OrderStatus.DELIVERY_ROUTE]: 'text-bg-info',
-      [OrderStatus.FINISHED]: 'text-bg-success',
-      [OrderStatus.PREPARE_LIST]: 'text-bg-info',
-      [OrderStatus.WAIT_PAYMENT]: 'text-bg-warning',
-    }
-    return badgeColors[status];
-  }
-
   const goToOrdersDetails = () => {
     Engine.navigateTo(`/gerencial/pedidos/detalhes?id=${id}`)
   }

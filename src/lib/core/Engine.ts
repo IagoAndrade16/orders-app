@@ -6,7 +6,7 @@ export class Engine {
 
 	static async navigateTo(page: string) {
 		const route = page;
-		window.location.href = `${route}?v=${new Date().getTime()}`;
+		window.location.href = `${route}`;
 	}
 
 	static reload() {

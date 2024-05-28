@@ -3,6 +3,7 @@
 	import BodyMargin from "$lib/components/BodyMargin.svelte";
 	import OrderStatusComponent from "$lib/components/OrderStatusComponent.svelte";
 	import { Engine } from "$lib/core/Engine";
+	import { OrderPaymentMethodEnum } from "$lib/entities/Order";
 	import { OrderStatus, OrdersService, type GetOrderData } from "$lib/services/OrdersService";
 	import { ToastService } from "$lib/services/ToastService";
 	import { userStore } from "$lib/stores/user.store";
@@ -42,7 +43,7 @@
     if(getOrderRes.data) { 
       order = getOrderRes.data;
       totalPrice = order.products.reduce((acc, product) => acc + (product.price * product.quantity), 0);
-      getStatusBadgeColor(order.status);
+      // getStatusBadgeColor(order.status);
     } else {
       Engine.navigateTo('/');
     }
@@ -64,7 +65,7 @@
                   <p>E-mail: {order.userEmail ? order.userEmail : 'Não informado'}</p>
                   <p>Telefone: {order.userPhone}</p>
                   <p>Endereço: {order.userAddress}</p>
-                  <p>Forma de pagamento: {order.paymentMethod ?? '-'}</p>
+                  <p>Forma de pagamento: {OrderPaymentMethodEnum[order.paymentMethod] ?? '-'}</p>
                   <p>Valor total: {Utils.formatNumberToBrl(totalPrice)}</p>
 
                   <OrderStatusComponent 

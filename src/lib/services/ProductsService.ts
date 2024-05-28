@@ -23,7 +23,16 @@ type DeleteProduct = {
   productId: string;
 }
 
+type FetchProductsReportInput ={
+  from?: Date;
+  to?: Date;
+}
 
+export type FetchProductsReportOutput ={
+  productName: string;
+	productId: string;
+	totalQuantity: number;
+}
 
 export class ProductsService {
   static async create(input: CreateProductDTO, token: string): Promise<ProductsServiceBaseOutput<void>> {
@@ -70,6 +79,15 @@ export class ProductsService {
     return {
       status: 'SUCCESS',
       data: new Product(res.data.product),
+    }
+  }
+
+  static async fetchReport(input: FetchProductsReportInput, token: string): Promise<ProductsServiceBaseOutput<FetchProductsReportOutput[]>> {
+    const res = await OrdersApi.post(`/product/report`, input, { token });
+
+    return {
+      status: 'SUCCESS',
+      data: res.data as FetchProductsReportOutput[],
     }
   }
 
