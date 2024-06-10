@@ -3,15 +3,15 @@ import { Buffer } from 'buffer';
 import {
 	type ApiResponse, type ApiHeaders, apiProvider,
 } from '../api/ApiProvider';
-import { jsonReader } from '../json-reader/JsonReader';
 
 export class OrdersApi {
 	private static _cachedBaseUrl: string | null = null;
 
 	private static async _baseUrl(): Promise<string> {
 		if (!this._cachedBaseUrl) {
-			const config = await jsonReader.read('/config.json');
-			this._cachedBaseUrl = config.apiBaseUrl;
+			// const config = await jsonReader.read('/config.json');
+			// this._cachedBaseUrl = config.apiBaseUrl;
+			this._cachedBaseUrl = 'https://orders-api.fly.dev';
 		}
 
 		// console.log('this._cachedBaseUrl', this._cachedBaseUrl);
