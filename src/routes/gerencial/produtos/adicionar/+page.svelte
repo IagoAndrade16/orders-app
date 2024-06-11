@@ -2,6 +2,7 @@
 	import BodyMargin from "$lib/components/BodyMargin.svelte";
 	import InputComponent from "$lib/components/InputComponent.svelte";
 	import { Engine } from "$lib/core/Engine";
+	import { User } from "$lib/entities/User";
 	import { ProductsService, type CreateProductDTO } from "$lib/services/ProductsService";
 	import { userStore } from "$lib/stores/user.store";
 	import { Validations } from "$lib/utils/Validations";
@@ -61,7 +62,7 @@
   }
 
   onMount(async () => {
-    // if(!User.validateOwnerPermissions($userStore ?? null)) Engine.navigateTo('/');‚
+    if(!User.validateOwnerPermissions($userStore ?? null)) Engine.navigateTo('/');
   })
 
 </script>
