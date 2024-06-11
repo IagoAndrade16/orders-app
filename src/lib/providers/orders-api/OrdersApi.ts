@@ -11,7 +11,7 @@ export class OrdersApi {
 		if (!this._cachedBaseUrl) {
 			// const config = await jsonReader.read('/config.json');
 			// this._cachedBaseUrl = config.apiBaseUrl;
-			this._cachedBaseUrl = 'https://orders-api.fly.dev';
+			this._cachedBaseUrl = 'https://peppe-forneria.fly.dev';
 		}
 
 		// console.log('this._cachedBaseUrl', this._cachedBaseUrl);
