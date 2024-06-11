@@ -3,12 +3,11 @@
 	import InputComponent from "$lib/components/InputComponent.svelte";
 	import { Engine } from "$lib/core/Engine";
 	import { ProductsService, type CreateProductDTO } from "$lib/services/ProductsService";
-	import { Validations } from "$lib/utils/Validations";
-	import Swal from "sweetalert2";
-  import * as yup from 'yup';
 	import { userStore } from "$lib/stores/user.store";
+	import { Validations } from "$lib/utils/Validations";
 	import { onMount } from "svelte";
-	import { User } from "$lib/entities/User";
+	import Swal from "sweetalert2";
+	import * as yup from 'yup';
   
 
   let errors: any = null;
@@ -62,7 +61,7 @@
   }
 
   onMount(async () => {
-    if(!User.validateOwnerPermissions($userStore ?? null)) Engine.navigateTo('/');
+    // if(!User.validateOwnerPermissions($userStore ?? null)) Engine.navigateTo('/');‚
   })
 
 </script>
