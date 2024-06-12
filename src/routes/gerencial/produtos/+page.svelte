@@ -106,10 +106,15 @@
     </div>
 
     <div class="col-12 col-md-2 mb-2">
-      <button class="btn btn-outline-success w-100 float-md-end" on:click={() => Engine.navigateTo('/gerencial/produtos/adicionar')}>
+      <!-- <button class="btn btn-outline-success w-100 float-md-end" on:click={() => Engine.navigateTo('/gerencial/produtos/adicionar')}>
         Criar produto
         <PlusIcon size=16 />
-      </button>
+      </button> -->
+
+      <a href="/gerencial/produtos/adicionar" class="btn btn-outline-success w-100 float-md-end">
+        Criar produto
+        <PlusIcon size=16 />
+      </a>
     </div>
   </div>
 
