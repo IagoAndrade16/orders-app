@@ -1,3 +1,4 @@
+import { goto } from "$app/navigation";
 
 export class Engine {
   static back() {
@@ -5,8 +6,7 @@ export class Engine {
   }
 
 	static async navigateTo(page: string) {
-		const route = page;
-		window.location.href = `${route}`;
+		goto(page);
 	}
 
 	static reload() {

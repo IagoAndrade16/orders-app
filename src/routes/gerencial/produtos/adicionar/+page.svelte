@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from "$app/navigation";
 	import BodyMargin from "$lib/components/BodyMargin.svelte";
 	import InputComponent from "$lib/components/InputComponent.svelte";
 	import { User } from "$lib/entities/User";
@@ -45,8 +46,8 @@
           confirmButtonText: 'Ok',
         });
 
-        window.location.href = '/gerencial/produtos';
-
+        // window.location.href = '/gerencial/produtos';
+        goto('/gerencial/produtos');
         break;
       case 'UNAUTHORIZED':
         await Swal.fire({
