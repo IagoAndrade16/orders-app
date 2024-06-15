@@ -12,6 +12,7 @@ export class OrdersApi {
 			// const config = await jsonReader.read('/config.json');
 			// this._cachedBaseUrl = config.apiBaseUrl;
 			this._cachedBaseUrl = 'https://peppe-forneria.fly.dev';
+			// this._cachedBaseUrl = 'http://localhost:3000';
 		}
 
 		// console.log('this._cachedBaseUrl', this._cachedBaseUrl);

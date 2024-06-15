@@ -49,7 +49,7 @@
       </h4>
       <p>
         {#if order.paymentMethod === 'pix'}
-          Realize o PIX para a chave: <b> CNPJ: 53.903.643/0001-01 </b> no valor de <b>{Utils.formatNumberToBrl(totalPrice)}
+          Realize o PIX para a chave: <b> CNPJ: 53.903.643/0001-01(53903643 Pedro Henrique Souza Siqueira) </b> no valor de <b>{Utils.formatNumberToBrl(totalPrice)}
           </b> e pronto! Seu pedido já estará em estágio de preparo.
 
         {:else}

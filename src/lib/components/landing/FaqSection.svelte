@@ -41,13 +41,13 @@
 
     <FaqItem 
       question="Qual o tamanho das pizzas?" 
-      answer="Nossas pizzas possuem aproximadamente 30cm de diâmetro." 
+      answer="Nossas pizzas possuem aproximadamente 29cm de diâmetro." 
       id={6}
     />
     <FaqItem 
       question="Qual o prazo de validade e armazenamento correto das pizzas?" 
       answer="As pizzas têm validade de 60 dias a partir da data de fabricação e devem ser armazenadas no freezer até o momento do preparo." 
-      id={6}
+      id={7}
     />
   </div>
 </div>

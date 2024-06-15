@@ -87,16 +87,16 @@
                   <div class="d-flex gap-2">
                     <button class="btn btn-primary" on:click={() => window.print()}>Imprimir</button>
                     <button on:click={() => Engine.back()} class="btn btn-secondary">Voltar</button>
-                    
-                    <div class="dropdown">
-                      <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Atualizar status do pedido
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li><button on:click={() => handleUpdateOrderStatus(OrderStatus.DELIVERY_ROUTE)} class="dropdown-item">Em rota de entrega</button></li>
-                        <li><button on:click={() => handleUpdateOrderStatus(OrderStatus.FINISHED)} class="dropdown-item">Entregue</button></li>
-                      </ul>
-                    </div>
+                  </div>
+
+                  <div class="dropdown mt-3">
+                    <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Atualizar status do pedido
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><button on:click={() => handleUpdateOrderStatus(OrderStatus.DELIVERY_ROUTE)} class="dropdown-item">Em rota de entrega</button></li>
+                      <li><button on:click={() => handleUpdateOrderStatus(OrderStatus.FINISHED)} class="dropdown-item">Entregue</button></li>
+                    </ul>
                   </div>
                 </div>
               </div>
