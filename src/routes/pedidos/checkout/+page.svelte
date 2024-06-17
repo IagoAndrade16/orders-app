@@ -34,17 +34,17 @@ import { cartStore } from "$lib/stores/cart.store";
         <div class="card mb-5 shadow border-0">
           <div class="row">
             <div class="col-12 col-md-4 col-lg-4">
-              <img src={product.imageUrl} class="img-fluid rounded-start" alt="" style="height: 100%; object-fit: cover;">
+              <img src={product.imageUrl} class="img-fluid img-thumbnail rounded-start" alt="" height="45">
             </div>
             <div class="col-12 col-md-5 col-lg-5 border border-top-0 border-bottom-0 border-start-0">
               <div class="card-body">
-                <h5 class="card-title">{product.name}</h5>
-                <!-- <p class="card-text">{product.description}</p> -->
-                <br>
-
-                <p>Quantidade: </p>
-                <ProductQuantityComponent bind:quantity={product.quantity} />
-                <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
+                <center>
+                  <h5 class="card-title">{product.name}</h5>
+                  <br>
+                
+                  <p>Quantidade: </p>
+                  <ProductQuantityComponent bind:quantity={product.quantity} />
+                </center>
               </div>
             </div>
 

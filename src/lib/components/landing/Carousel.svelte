@@ -6,6 +6,9 @@
           <div class="carousel-item active text-center">
             <img src="/carousel/carousel1.jpeg" class="carousel-image" alt="">
           </div>
+          <!-- <div class="carousel-item active text-center" style="height: 30%;">
+            <img src="/carousel/carousel2.jpeg" class="carousel-image" alt="">
+          </div> -->
           <div class="carousel-item active text-center">
             <img src="/carousel/carousel3.jpeg" class=" carousel-image" alt="">
           </div>

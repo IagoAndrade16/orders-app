@@ -5,11 +5,13 @@
 	import { ProductsService } from "$lib/services/ProductsService";
 
 	let products: ProductCardComponentInput[] = [];
+  let handleDeleteProduct: (productId: string) => {};
+
 
 	onMount(async() => {
 		const listProductsRes = await ProductsService.list({
 			page: 1,
-			pageSize: 3,
+			pageSize: 6,
 		});
 
 		products = listProductsRes.data.products.map((product) => {
@@ -43,19 +45,25 @@
 
 <div class="container my-5">
 	<div class="row">
-		<div class="col-12 col-md-12 col-lg-3 my-2">
+		<div class="col-12 col-md-12 col-lg-3 mt-2 mb-5">
 			<a class="card text-bg-dark look-all-products-card border-0" href="/produtos">
 				<img src="/imagem-pizza1.jpeg" class="img-fluid" alt="">
 				<div class="card-img-overlay">
-					<span class="rounded-pill bg-white text-black p-2">Pizzas</span>
-					<p class="card-text ms-1 mt-1"><small>Ver tudo</small></p>
+					<span class="rounded-pill bg-black text-white p-2">Pizzas</span>
 				</div>
 			</a>
 		</div>
 
 		{#each products as product}
 			<div class="col-sm-6 col-md-6 col-lg-3">
-				<ProductCard {...product} />
+				<ProductCard
+					imgSrc={product.imgSrc}
+					title={product.title}
+					price={product.price}
+					productId={product.productId}
+					handleDeleteProduct={handleDeleteProduct}
+					isAdmin={false}
+				/>
 			</div>
 		{/each}
 	</div>

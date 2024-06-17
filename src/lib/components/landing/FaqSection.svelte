@@ -23,7 +23,7 @@
 
     <FaqItem 
       question="Qual a área de entrega?" 
-      answer="Até o momento, entregamos para as cidades de Volta Redonda, Barra Mansa, Resende e Bananal." 
+      answer="Até o momento, entregamos para as cidades de Volta Redonda, Barra Mansa e Bananal." 
       id={3}
     />
 

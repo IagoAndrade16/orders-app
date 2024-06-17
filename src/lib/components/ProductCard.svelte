@@ -3,6 +3,7 @@
 	import { Utils } from "$lib/utils/Utils";
 	import { Edit2Icon, Trash2Icon } from "svelte-feather-icons";
 	import type { ButtonClass } from "./types/ProductCardComponentDTOs";
+	import { goto } from "$app/navigation";
 
 
   export let imgSrc: string | null;
@@ -15,6 +16,11 @@
 
   // make this function optional in component
   export let handleDeleteProduct: (productId: string) => {};
+
+  async function goToRecommendedProduct() {
+    await goto(`/produto?id=${productId}`);
+    location.reload();
+  }
 
 </script>
 
@@ -40,7 +46,7 @@
     </button>
   </div>
   {/if}
-    <button on:click={() => Engine.navigateTo(`/produto?id=${productId}`)} class="btn btn-{buttonColor} {buttonAdditionalClasses} view-product rounded-0">Ver produto</button>
+    <button on:click={goToRecommendedProduct} class="btn btn-{buttonColor} {buttonAdditionalClasses} view-product rounded-0">Ver produto</button>
 </a>
 
 <style>

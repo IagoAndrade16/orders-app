@@ -8,6 +8,7 @@
 	import { cartStore } from "$lib/stores/cart.store";
 	import { Masks } from "$lib/utils/Masks";
 	import { Validations } from "$lib/utils/Validations";
+	import { onMount } from "svelte";
 	import Swal from 'sweetalert2';
 	import * as yup from 'yup';
 
@@ -52,7 +53,7 @@
     neighborhood: yup.string().min(3, 'O campo bairro deve conter no mínimo 3 caracteres').required('O campo bairro é obrigatório'),
     street: yup.string().min(3, 'O campo rua deve conter no mínimo 3 caracteres').required('O campo rua é obrigatório'),
     number: yup.string().min(1, 'O campo número deve conter no mínimo 1 caracter').required('O campo número é obrigatório'),
-    email: yup.string().email('O e-mail digitado é inválido').required('O campo email é obrigatório'),
+    email: yup.string().email('O e-mail digitado é inválido').nullable().default(null),
     complement: yup.string()
   });
 
@@ -90,6 +91,10 @@
       }); 
     }
   }
+
+  onMount(() => {
+    window.scrollTo(0, 0);
+  });
 
 </script>
 <div class="container mt-5">
@@ -152,10 +157,10 @@
         <InputComponent 
           id="email"
           label="E-mail"
+          smallText="(utilizado para acompanhamento do pedido)"
           bind:value={values.email}
           classes="{Validations.isValidEmail(values.email) ? 'is-valid' : ''}"
           placeholder="Digite seu e-mail"
-          required
           containerClasses="col-md-6 mb-3"
           error={errors ? errors.email : ''} />
 

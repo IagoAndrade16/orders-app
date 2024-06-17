@@ -15,6 +15,7 @@
   let quantity = 1;
   let products: ProductCardComponentInput[] = [];
   let product: Product | null = null;
+  let handleDeleteProduct: (productId: string) => {};
 
   const productId = $page.url.searchParams.get('id');
 
@@ -56,6 +57,7 @@
         price: product.price,
       }
     });
+    window.scrollTo(0, 0);
   })
 
 </script>
@@ -95,7 +97,14 @@
     <h4 class="text-dark mt-5 text-center">Produtos que talvez você goste</h4>
 		{#each products as product}
 			<div class="col-sm-4 col-md-4 col-lg-2 mt-5">
-				<ProductCard {...product} />
+				<ProductCard 
+          imgSrc={product.imgSrc}
+          title={product.title}
+          price={product.price}
+          productId={product.productId}
+          handleDeleteProduct={handleDeleteProduct}
+          isAdmin={false}
+        />
 			</div>
 		{/each}
   </div>

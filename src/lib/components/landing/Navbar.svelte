@@ -1,11 +1,25 @@
 <script>
-	import { ShoppingCartIcon, Trash2Icon } from "svelte-feather-icons";
-  import { cartStore } from "$lib/stores/cart.store";
-	import { Utils } from "$lib/utils/Utils";
-	import { Engine } from "$lib/core/Engine";
-	import ProductQuantityComponent from "../ProductQuantityComponent.svelte";
-	import { userStore } from "$lib/stores/user.store";
+	import { goto } from "$app/navigation";
 	import { User } from "$lib/entities/User";
+	import { cartStore } from "$lib/stores/cart.store";
+	import { userStore } from "$lib/stores/user.store";
+	import { Utils } from "$lib/utils/Utils";
+	import { onMount } from "svelte";
+	import { ShoppingCartIcon, Trash2Icon } from "svelte-feather-icons";
+	import ProductQuantityComponent from "../ProductQuantityComponent.svelte";
+
+  async function goToFinishOrder() {
+    const closeCanvasButton = document.getElementById('close-offcanvas');
+    closeCanvasButton?.click();
+    await goto('/pedidos/checkout');
+    location.reload();
+
+  }
+
+  onMount(() => {
+    const closeCanvasButton = document.getElementById('close-offcanvas');
+    closeCanvasButton?.click();
+  })
 
 </script>
 <nav class="navbar navbar-expand-lg">
@@ -14,7 +28,7 @@
 			<img src="/favicon.jpeg" height="90" alt="Peppe Forneria logo">
       <span class="d-none d-lg-inline-flex" style="font-size: 1rem;">Peppe Forneria</span>
 		</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button id="navbar-button-toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
@@ -79,7 +93,7 @@
         {/if}
 
 
-        <button class="btn position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+        <button id="toggle-navbar-button" class="btn position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
           <ShoppingCartIcon size=18/>
           <span class="position-absolute translate-middle badge rounded-pill bg-danger" style="top: 22%; left: 100%;">
             {$cartStore.length}
@@ -95,7 +109,7 @@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasRightLabel">Meu carrinho</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <button id="close-offcanvas" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   {#if $cartStore.length === 0}
     <div class="offcanvas-body">
@@ -110,7 +124,7 @@
             <img src={product.imageUrl} alt="product-image" class="img-fluid img-thumbnail" width="50" height="50">
             <div class="d-flex flex-column ms-2">
               <span>{product.name}</span>
-              <span>{Utils.formatNumberToBrl(product.price)}</span>
+              <span>{Utils.formatNumberToBrl(product.price * $cartStore[index].quantity)}</span>
             </div>
           </div>
           <div class="d-flex">
@@ -132,7 +146,7 @@
       </div>
   
       <div class="d-flex">
-        <button class="btn btn-outline-dark w-100 rounded-0 my-2" on:click={() => Engine.navigateTo('/pedidos/checkout')}>Finalizar pedido</button>
+        <button class="btn btn-outline-dark w-100 rounded-0 my-2" on:click={goToFinishOrder}>Finalizar pedido</button>
       </div>
     </div>
   {/if}
