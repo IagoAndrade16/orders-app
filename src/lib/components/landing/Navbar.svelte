@@ -12,7 +12,7 @@
     const closeCanvasButton = document.getElementById('close-offcanvas');
     closeCanvasButton?.click();
     await goto('/pedidos/checkout');
-    location.reload();
+    // location.reload();
 
   }
 

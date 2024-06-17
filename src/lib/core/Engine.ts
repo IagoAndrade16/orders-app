@@ -7,7 +7,7 @@ export class Engine {
 
 	static async navigateTo(page: string) {
 		await goto(page, { replaceState: true});
-		location.reload();
+		// location.reload();
 	}
 
 	static reload() {

@@ -19,7 +19,7 @@
 
   async function goToRecommendedProduct() {
     await goto(`/produto?id=${productId}`);
-    location.reload();
+    // location.reload();
   }
 
 </script>
