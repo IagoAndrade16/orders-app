@@ -1,0 +1,434 @@
+{
+  ".svelte-kit/generated/server/internal.js": {
+    "file": "internal.js",
+    "name": "internal",
+    "src": ".svelte-kit/generated/server/internal.js",
+    "isEntry": true,
+    "imports": [
+      "_internal.js"
+    ]
+  },
+  "_BodyMargin.js": {
+    "file": "chunks/BodyMargin.js",
+    "name": "BodyMargin",
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "_Engine.js": {
+    "file": "chunks/Engine.js",
+    "name": "Engine",
+    "imports": [
+      "_client.js"
+    ]
+  },
+  "_InputComponent.js": {
+    "file": "chunks/InputComponent.js",
+    "name": "InputComponent",
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "_Masks.js": {
+    "file": "chunks/Masks.js",
+    "name": "Masks",
+    "imports": [
+      "_OrdersApi.js"
+    ]
+  },
+  "_Order.js": {
+    "file": "chunks/Order.js",
+    "name": "Order",
+    "imports": [
+      "_ssr.js",
+      "_client.js",
+      "_Utils.js",
+      "_Masks.js"
+    ]
+  },
+  "_OrderResumeComponent.js": {
+    "file": "chunks/OrderResumeComponent.js",
+    "name": "OrderResumeComponent",
+    "imports": [
+      "_ssr.js",
+      "_Utils.js",
+      "_cart.store.js",
+      "_client.js"
+    ]
+  },
+  "_OrdersApi.js": {
+    "file": "chunks/OrdersApi.js",
+    "name": "OrdersApi"
+  },
+  "_ProductCard.js": {
+    "file": "chunks/ProductCard.js",
+    "name": "ProductCard",
+    "imports": [
+      "_ssr.js",
+      "_client.js",
+      "_Utils.js",
+      "_ProductQuantityComponent.js",
+      "_SvelteToast.svelte_svelte_type_style_lang.js",
+      "_cart.store.js"
+    ],
+    "css": [
+      "_app/immutable/assets/ProductCard.BreadfXm.css"
+    ]
+  },
+  "_ProductQuantityComponent.js": {
+    "file": "chunks/ProductQuantityComponent.js",
+    "name": "ProductQuantityComponent",
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "_ProductsService.js": {
+    "file": "chunks/ProductsService.js",
+    "name": "ProductsService",
+    "imports": [
+      "_OrdersApi.js"
+    ]
+  },
+  "_SearchIcon.js": {
+    "file": "chunks/SearchIcon.js",
+    "name": "SearchIcon",
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "_ShoppingCartIcon.js": {
+    "file": "chunks/ShoppingCartIcon.js",
+    "name": "ShoppingCartIcon",
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "_Store.js": {
+    "file": "chunks/Store.js",
+    "name": "Store",
+    "imports": [
+      "_index.js"
+    ]
+  },
+  "_SvelteToast.svelte_svelte_type_style_lang.js": {
+    "file": "chunks/SvelteToast.svelte_svelte_type_style_lang.js",
+    "name": "SvelteToast.svelte_svelte_type_style_lang",
+    "imports": [
+      "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/SvelteToast.DbLvtVfH.css"
+    ]
+  },
+  "_UsersService.js": {
+    "file": "chunks/UsersService.js",
+    "name": "UsersService",
+    "imports": [
+      "_ssr.js",
+      "_OrdersApi.js"
+    ]
+  },
+  "_Utils.js": {
+    "file": "chunks/Utils.js",
+    "name": "Utils"
+  },
+  "_cart.store.js": {
+    "file": "chunks/cart.store.js",
+    "name": "cart.store",
+    "imports": [
+      "_Store.js"
+    ]
+  },
+  "_client.js": {
+    "file": "chunks/client.js",
+    "name": "client",
+    "imports": [
+      "_exports.js"
+    ]
+  },
+  "_exports.js": {
+    "file": "chunks/exports.js",
+    "name": "exports"
+  },
+  "_index.js": {
+    "file": "chunks/index.js",
+    "name": "index",
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "_internal.js": {
+    "file": "chunks/internal.js",
+    "name": "internal",
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "_ssr.js": {
+    "file": "chunks/ssr.js",
+    "name": "ssr"
+  },
+  "_stores.js": {
+    "file": "chunks/stores.js",
+    "name": "stores",
+    "imports": [
+      "_ssr.js",
+      "_client.js"
+    ]
+  },
+  "_user.store.js": {
+    "file": "chunks/user.store.js",
+    "name": "user.store",
+    "imports": [
+      "_Store.js"
+    ]
+  },
+  "node_modules/@sveltejs/kit/src/runtime/components/error.svelte": {
+    "file": "entries/fallbacks/error.svelte.js",
+    "name": "entries/fallbacks/error.svelte",
+    "src": "node_modules/@sveltejs/kit/src/runtime/components/error.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_stores.js"
+    ]
+  },
+  "node_modules/@sveltejs/kit/src/runtime/server/index.js": {
+    "file": "index.js",
+    "name": "index",
+    "src": "node_modules/@sveltejs/kit/src/runtime/server/index.js",
+    "isEntry": true,
+    "imports": [
+      "_internal.js",
+      "_exports.js",
+      "_index.js"
+    ]
+  },
+  "src/routes/+layout.svelte": {
+    "file": "entries/pages/_layout.svelte.js",
+    "name": "entries/pages/_layout.svelte",
+    "src": "src/routes/+layout.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_client.js",
+      "_user.store.js",
+      "_cart.store.js",
+      "_Utils.js",
+      "_ShoppingCartIcon.js",
+      "_ProductQuantityComponent.js",
+      "_SvelteToast.svelte_svelte_type_style_lang.js",
+      "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_layout.CQiBJNKO.css"
+    ]
+  },
+  "src/routes/+page.svelte": {
+    "file": "entries/pages/_page.svelte.js",
+    "name": "entries/pages/_page.svelte",
+    "src": "src/routes/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_ProductCard.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.B96YzceB.css"
+    ]
+  },
+  "src/routes/+page.ts": {
+    "file": "entries/pages/_page.ts.js",
+    "name": "entries/pages/_page.ts",
+    "src": "src/routes/+page.ts",
+    "isEntry": true
+  },
+  "src/routes/criar-conta/+page.svelte": {
+    "file": "entries/pages/criar-conta/_page.svelte.js",
+    "name": "entries/pages/criar-conta/_page.svelte",
+    "src": "src/routes/criar-conta/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_UsersService.js",
+      "_Engine.js"
+    ]
+  },
+  "src/routes/gerencial/pedidos/+page.svelte": {
+    "file": "entries/pages/gerencial/pedidos/_page.svelte.js",
+    "name": "entries/pages/gerencial/pedidos/_page.svelte",
+    "src": "src/routes/gerencial/pedidos/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_BodyMargin.js",
+      "_Order.js",
+      "_Masks.js"
+    ]
+  },
+  "src/routes/gerencial/pedidos/detalhes/+page.svelte": {
+    "file": "entries/pages/gerencial/pedidos/detalhes/_page.svelte.js",
+    "name": "entries/pages/gerencial/pedidos/detalhes/_page.svelte",
+    "src": "src/routes/gerencial/pedidos/detalhes/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_stores.js",
+      "_BodyMargin.js",
+      "_client.js",
+      "_SvelteToast.svelte_svelte_type_style_lang.js",
+      "_user.store.js"
+    ]
+  },
+  "src/routes/gerencial/produtos/+page.svelte": {
+    "file": "entries/pages/gerencial/produtos/_page.svelte.js",
+    "name": "entries/pages/gerencial/produtos/_page.svelte",
+    "src": "src/routes/gerencial/produtos/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_BodyMargin.js",
+      "_ProductsService.js",
+      "_ProductCard.js",
+      "_client.js",
+      "_user.store.js",
+      "_SvelteToast.svelte_svelte_type_style_lang.js"
+    ]
+  },
+  "src/routes/gerencial/produtos/adicionar/+page.svelte": {
+    "file": "entries/pages/gerencial/produtos/adicionar/_page.svelte.js",
+    "name": "entries/pages/gerencial/produtos/adicionar/_page.svelte",
+    "src": "src/routes/gerencial/produtos/adicionar/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_client.js",
+      "_BodyMargin.js",
+      "_InputComponent.js",
+      "_user.store.js"
+    ]
+  },
+  "src/routes/gerencial/produtos/editar/+page.svelte": {
+    "file": "entries/pages/gerencial/produtos/editar/_page.svelte.js",
+    "name": "entries/pages/gerencial/produtos/editar/_page.svelte",
+    "src": "src/routes/gerencial/produtos/editar/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_BodyMargin.js",
+      "_InputComponent.js",
+      "_user.store.js",
+      "_client.js",
+      "_SvelteToast.svelte_svelte_type_style_lang.js"
+    ]
+  },
+  "src/routes/gerencial/produtos/relatorio/+page.svelte": {
+    "file": "entries/pages/gerencial/produtos/relatorio/_page.svelte.js",
+    "name": "entries/pages/gerencial/produtos/relatorio/_page.svelte",
+    "src": "src/routes/gerencial/produtos/relatorio/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_BodyMargin.js",
+      "_client.js",
+      "_user.store.js"
+    ]
+  },
+  "src/routes/login/+page.svelte": {
+    "file": "entries/pages/login/_page.svelte.js",
+    "name": "entries/pages/login/_page.svelte",
+    "src": "src/routes/login/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_Engine.js",
+      "_UsersService.js",
+      "_user.store.js"
+    ]
+  },
+  "src/routes/pedidos/+page.svelte": {
+    "file": "entries/pages/pedidos/_page.svelte.js",
+    "name": "entries/pages/pedidos/_page.svelte",
+    "src": "src/routes/pedidos/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_Order.js",
+      "_user.store.js",
+      "_Masks.js",
+      "_SearchIcon.js"
+    ]
+  },
+  "src/routes/pedidos/checkout/+page.svelte": {
+    "file": "entries/pages/pedidos/checkout/_page.svelte.js",
+    "name": "entries/pages/pedidos/checkout/_page.svelte",
+    "src": "src/routes/pedidos/checkout/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_OrderResumeComponent.js",
+      "_ProductQuantityComponent.js",
+      "_Engine.js",
+      "_cart.store.js",
+      "_Utils.js"
+    ]
+  },
+  "src/routes/pedidos/endereco/+page.svelte": {
+    "file": "entries/pages/pedidos/endereco/_page.svelte.js",
+    "name": "entries/pages/pedidos/endereco/_page.svelte",
+    "src": "src/routes/pedidos/endereco/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_InputComponent.js",
+      "_OrderResumeComponent.js",
+      "_Engine.js",
+      "_Masks.js",
+      "_cart.store.js"
+    ]
+  },
+  "src/routes/pedidos/finalizado/+page.svelte": {
+    "file": "entries/pages/pedidos/finalizado/_page.svelte.js",
+    "name": "entries/pages/pedidos/finalizado/_page.svelte",
+    "src": "src/routes/pedidos/finalizado/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_stores.js",
+      "_client.js"
+    ]
+  },
+  "src/routes/produto/+page.svelte": {
+    "file": "entries/pages/produto/_page.svelte.js",
+    "name": "entries/pages/produto/_page.svelte",
+    "src": "src/routes/produto/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_stores.js",
+      "_ProductCard.js",
+      "_ProductsService.js",
+      "_client.js",
+      "_Utils.js",
+      "_ShoppingCartIcon.js",
+      "_SvelteToast.svelte_svelte_type_style_lang.js",
+      "_cart.store.js",
+      "_ProductQuantityComponent.js"
+    ]
+  },
+  "src/routes/produtos/+page.svelte": {
+    "file": "entries/pages/produtos/_page.svelte.js",
+    "name": "entries/pages/produtos/_page.svelte",
+    "src": "src/routes/produtos/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_SearchIcon.js",
+      "_ProductCard.js",
+      "_stores.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.9UbD1Oo6.css"
+    ]
+  }
+}

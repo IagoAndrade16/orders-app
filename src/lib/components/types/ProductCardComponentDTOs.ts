@@ -5,7 +5,10 @@ export type ProductCardComponentInput = {
   price: number;
   productId: string;
   buttonColor: ButtonClass;
+  id: string;
   buttonAdditionalClasses?: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type ButtonClass = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link';

@@ -11,6 +11,7 @@
 	import { ToastService } from "$lib/services/ToastService";
   import { cartStore } from "$lib/stores/cart.store";
 	import ProductQuantityComponent from "$lib/components/ProductQuantityComponent.svelte";
+	import Swal from "sweetalert2";
 
   let quantity = 1;
   let products: ProductCardComponentInput[] = [];
@@ -34,6 +35,13 @@
     $cartStore = [{ ...product, quantity}, ...$cartStore]
   }
 
+  const goToRecommendedProduct = async (productIdToFind: string) => {
+    const getProductRes = await ProductsService.get(productIdToFind!);
+    product = getProductRes.data;
+    window.scrollTo(0, 0);
+
+  }
+
   onMount(async() => {
     // if(!productId) {
     //   Engine.back();
@@ -49,12 +57,15 @@
 
     products = listProductsRes.data.products.map((product) => {
       return {
+        id: product.id,
         buttonColor: 'dark',
         imgSrc: product.imageUrl,
         productId: product.id,
         title: product.name,
         text: product.description,
         price: product.price,
+        createdAt: product.createdAt,
+        updatedAt: product.updatedAt,
       }
     });
     window.scrollTo(0, 0);
@@ -98,12 +109,15 @@
 		{#each products as product}
 			<div class="col-sm-4 col-md-4 col-lg-2 mt-5">
 				<ProductCard 
-          imgSrc={product.imgSrc}
-          title={product.title}
-          price={product.price}
-          productId={product.productId}
-          handleDeleteProduct={handleDeleteProduct}
-          isAdmin={false}
+          bind:imgSrc={product.imgSrc}
+          bind:title={product.title}
+          bind:price={product.price}
+          bind:productId={product.productId}
+          bind:handleDeleteProduct={handleDeleteProduct}
+          goToRecommendedProduct={() => goToRecommendedProduct(product.id)}
+          bind:createdAt={product.createdAt}
+          bind:updatedAt={product.updatedAt}
+          bind:description={product.text}
         />
 			</div>
 		{/each}

@@ -22,6 +22,9 @@
 				title: product.name,
 				text: product.description,
 				price: product.price,
+				createdAt: product.createdAt,
+				updatedAt: product.updatedAt,
+				id: product.id,
 			}
 		})
 	})
@@ -57,12 +60,15 @@
 		{#each products as product}
 			<div class="col-sm-6 col-md-6 col-lg-3">
 				<ProductCard
-					imgSrc={product.imgSrc}
-					title={product.title}
-					price={product.price}
-					productId={product.productId}
-					handleDeleteProduct={handleDeleteProduct}
-					isAdmin={false}
+				bind:imgSrc={product.imgSrc}
+				bind:title={product.title}
+				bind:price={product.price}
+				bind:productId={product.productId}
+				bind:handleDeleteProduct={handleDeleteProduct}
+				bind:createdAt={product.createdAt}
+				bind:updatedAt={product.updatedAt}
+				bind:description={product.text}
+				showAddToCartButton
 				/>
 			</div>
 		{/each}

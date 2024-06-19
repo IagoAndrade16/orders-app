@@ -6,6 +6,8 @@
 	import type { ProductCardComponentInput } from '$lib/components/types/ProductCardComponentDTOs';
 	import { ProductsService } from '$lib/services/ProductsService';
 
+  let handleDeleteProduct: (productId: string) => {};
+
 	let products: ProductCardComponentInput[] = [];
 
 	let actualPage: number = parseInt($page.url.searchParams.get('page') || '1');
@@ -41,12 +43,15 @@
 
 		products = listProductsRes.data.products.map((product) => {
 			return {
+				id: product.id,
 				buttonColor: 'dark',
 				imgSrc: product.imageUrl,
 				productId: product.id,
 				title: product.name,
 				text: product.description,
-				price: product.price
+				price: product.price,
+				createdAt: product.createdAt,
+				updatedAt: product.updatedAt,
 			};
 		});
 
@@ -94,7 +99,17 @@
 	<div class="row">
 		{#each products as product}
 			<div class="col-sm-6 col-md-6 col-lg-3">
-				<ProductCard {...product} />
+				<ProductCard 
+					showAddToCartButton 
+					bind:imgSrc={product.imgSrc}
+          bind:title={product.title}
+          bind:price={product.price}
+          bind:productId={product.productId}
+          bind:handleDeleteProduct={handleDeleteProduct}
+          bind:createdAt={product.createdAt}
+          bind:updatedAt={product.updatedAt}
+          bind:description={product.text}
+				/>
 			</div>
 		{/each}
 	</div>
