@@ -7,11 +7,11 @@
             <img src="/carousel/carousel1.jpeg" class="carousel-image" alt="">
           </div>
           <!-- <div class="carousel-item active text-center" style="height: 30%;">
-            <img src="/carousel/carousel2.jpeg" class="carousel-image" alt="">
+            <img src="/carousel/carousel2.jpg" class="carousel-image" alt="">
           </div> -->
-          <div class="carousel-item active text-center">
+          <!-- <div class="carousel-item active text-center">
             <img src="/carousel/carousel3.jpeg" class=" carousel-image" alt="">
-          </div>
+          </div> -->
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
