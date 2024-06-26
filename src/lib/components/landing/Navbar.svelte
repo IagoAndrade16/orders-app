@@ -28,9 +28,20 @@
 			<img src="/favicon.jpeg" height="90" alt="Peppe Forneria logo">
       <span class="d-none d-lg-inline-flex" style="font-size: 1rem;">Peppe Forneria</span>
 		</a>
-    <button id="navbar-button-toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+
+    <div class="d-flex align-items-center">
+      <button id="toggle-navbar-button" class="btn position-relative d-flex d-lg-none me-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+        <ShoppingCartIcon size=18/>
+        <span class="position-absolute translate-middle badge rounded-pill bg-danger" style="top: 22%; left: 100%;">
+          {$cartStore.length}
+          <span class="visually-hidden">unread messages</span>
+        </span>
+      </button>
+
+      <button id="navbar-button-toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
     <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item me-lg-4">
@@ -93,7 +104,7 @@
         {/if}
 
 
-        <button id="toggle-navbar-button" class="btn position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+        <button id="toggle-navbar-button" class="btn position-relative d-none d-lg-inline" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
           <ShoppingCartIcon size=18/>
           <span class="position-absolute translate-middle badge rounded-pill bg-danger" style="top: 22%; left: 100%;">
             {$cartStore.length}

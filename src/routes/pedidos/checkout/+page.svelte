@@ -33,9 +33,9 @@ import { cartStore } from "$lib/stores/cart.store";
         {#each $cartStore as product, index}
         <div class="card mb-5 shadow border-0">
           <div class="row">
-            <div class="col-12 col-md-4 col-lg-4">
+            <!-- <div class="col-12 col-md-4 col-lg-4">
               <img src={product.imageUrl} class="img-fluid img-thumbnail rounded-start" alt="" height="45">
-            </div>
+            </div> -->
             <div class="col-12 col-md-5 col-lg-5 border border-top-0 border-bottom-0 border-start-0">
               <div class="card-body">
                 <center>

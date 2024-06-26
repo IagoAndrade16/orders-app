@@ -53,7 +53,7 @@
     neighborhood: yup.string().min(3, 'O campo bairro deve conter no mínimo 3 caracteres').required('O campo bairro é obrigatório'),
     street: yup.string().min(3, 'O campo rua deve conter no mínimo 3 caracteres').required('O campo rua é obrigatório'),
     number: yup.string().min(1, 'O campo número deve conter no mínimo 1 caracter').required('O campo número é obrigatório'),
-    email: yup.string().email('O e-mail digitado é inválido').nullable().default(null),
+    email: yup.string().email('O e-mail digitado é inválido').required('O campo email é obrigatório'),
     complement: yup.string()
   });
 
@@ -162,6 +162,7 @@
           classes="{Validations.isValidEmail(values.email) ? 'is-valid' : ''}"
           placeholder="Digite seu e-mail"
           containerClasses="col-md-6 mb-3"
+          required
           error={errors ? errors.email : ''} />
 
         <InputComponent 
