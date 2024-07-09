@@ -41,7 +41,6 @@ import { cartStore } from "$lib/stores/cart.store";
                 <center>
                   <h5 class="card-title">{product.name}</h5>
                   <br>
-                
                   <p>Quantidade: </p>
                   <ProductQuantityComponent bind:quantity={product.quantity} />
                 </center>
@@ -50,10 +49,9 @@ import { cartStore } from "$lib/stores/cart.store";
 
             <div class="col-12 col-md-3 col-lg-3">
               <div class="card-body text-center">
-                <h5 class="card-title text-center">{Utils.formatNumberToBrl(product.price)}</h5>
-                <p class="badge text-bg-success">Frete grátis</p>
+                <h5 class="card-title text-center">{Utils.formatNumberToBrl(product.price)}</h5> 
                 <br>
-
+                <!-- <p class="text-bg-secondary text-center rounded-pill p-1" style="font-size: 1rem;">Frete: a ser calculado</p>       -->
                 <button class="btn btn-outline-danger btn-sm rounded w-100" on:click={() => $cartStore = $cartStore.filter((_, i) => i !== index)}>
                   Remover
                   <Trash2Icon size=20 class="mb-1" />

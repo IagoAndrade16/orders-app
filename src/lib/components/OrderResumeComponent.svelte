@@ -7,6 +7,7 @@
   export let handleNextAction: () => void;
   export let continueButtonDisabled: boolean = false;
   export let continueButtonLoadingText: string = '';
+  export let shippingPrice: number = 0;
 
 </script>
 
@@ -24,13 +25,18 @@
       </div>
 
       <div class="d-flex justify-content-between">
+        <p>Frete</p>
+        <p class="text-bold">{shippingPrice ? Utils.formatNumberToBrl(shippingPrice) : Utils.formatNumberToBrl(0)}</p>
+      </div>
+
+      <div class="d-flex justify-content-between">
         <p>Descontos</p>
         <p class="text-bold text-success">{Utils.formatNumberToBrl(0)}</p>
       </div>
 
       <div class="d-flex justify-content-between">
         <p>Valor final:</p>
-        <p class="text-bold">{Utils.formatNumberToBrl($cartStore.reduce((acc, product) => acc + (product.price * product.quantity), 0))}</p>
+        <p class="text-bold">{Utils.formatNumberToBrl($cartStore.reduce((acc, product) => acc + (product.price * product.quantity), 0) + shippingPrice)}</p>
       </div>
 
       <hr>

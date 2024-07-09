@@ -2,9 +2,12 @@
 
 	import InputComponent from "$lib/components/InputComponent.svelte";
 	import OrderResumeComponent from "$lib/components/OrderResumeComponent.svelte";
+	import SelectComponent from "$lib/components/SelectComponent.svelte";
 	import { Engine } from "$lib/core/Engine";
 	import type { OrderPaymentMethod } from "$lib/entities/Order";
+	import type { Shipping } from "$lib/entities/Shipping";
 	import { OrdersService } from "$lib/services/OrdersService";
+	import { ShippingService } from "$lib/services/ShippingService";
 	import { cartStore } from "$lib/stores/cart.store";
 	import { Masks } from "$lib/utils/Masks";
 	import { Validations } from "$lib/utils/Validations";
@@ -15,6 +18,8 @@
   let errors: any = null;
   let submitFormButtonDisabled = false;
   let loadingText: string = 'Finalizando pedido...';
+  let shippings:  Shipping[] = [];
+  let shippingPrice: number;
 
   type FinishOrderForm = {
     firstName: string;
@@ -28,6 +33,7 @@
     number: string;
     complement: string;
     paymentMethod: OrderPaymentMethod;
+    shippingId: string;
   }
 
   const values: FinishOrderForm = {
@@ -42,14 +48,15 @@
     complement: '',
     email: '',
     paymentMethod: 'pix',
+    shippingId: '',
   }
 
   const formSchema = yup.object().shape({
     firstName: yup.string().min(3, 'O campo nome deve conter no mínimo 3 caracteres').required('O campo nome é obrigatório'),
     lastName: yup.string().min(3, 'O campo sobrenome deve conter no mínimo 3 caracteres').required('O campo sobrenome é obrigatório'),
     phone: yup.string().required().test('phone', 'Telefone inválido', (value) => Validations.isBrazilianPhone(value)),
-    city: yup.string().min(3, 'O campo cidade deve conter no mínimo 3 caracteres').required('O campo cidade é obrigatório'),
     zipCode: yup.string().required().test('zipCode', 'CEP inválido', (value) => Validations.isValidZipCode(value)),
+    city: yup.string().min(3, 'O campo cidade deve conter no mínimo 3 caracteres').required('O campo cidade é obrigatório'),
     neighborhood: yup.string().min(3, 'O campo bairro deve conter no mínimo 3 caracteres').required('O campo bairro é obrigatório'),
     street: yup.string().min(3, 'O campo rua deve conter no mínimo 3 caracteres').required('O campo rua é obrigatório'),
     number: yup.string().min(1, 'O campo número deve conter no mínimo 1 caracter').required('O campo número é obrigatório'),
@@ -63,7 +70,7 @@
 
     if(errors) return;
     
-    submitFormButtonDisabled = true;
+    submitFormButtonDisabled = true;    
     const res = await OrdersService.create({
       city: values.city,
       complement: values.complement,
@@ -76,7 +83,8 @@
       email: values.email,
       zipCode: values.zipCode,
       products: $cartStore.map(product => ({ productId: product.id, quantityOfProduct: product.quantity })),
-      paymentMethod: values.paymentMethod
+      paymentMethod: values.paymentMethod,
+      shippingId: values.shippingId
     })
 
     if(res) {
@@ -92,8 +100,21 @@
     }
   }
 
+  const getAllShippings = async () => {
+    const res = await ShippingService.getAll();
+    shippings = res.data.result;             
+  }
+
+  const getShippingPrice = (event: Event) => {
+    const select = event.target! as HTMLSelectElement
+    shippingPrice = Number(select.value); 
+    values.shippingId = select.options[select.selectedIndex].id;
+    values.city = select.options[select.selectedIndex].text; 
+  }
+
   onMount(() => {
     window.scrollTo(0, 0);
+    getAllShippings();
   });
 
 </script>
@@ -165,15 +186,11 @@
           required
           error={errors ? errors.email : ''} />
 
-        <InputComponent 
-          id="city"
-          label="Cidade"
-          classes="{values.city.length > 3 ? 'is-valid' : ''}"
-          bind:value={values.city}
-          placeholder="Ex: Bananal"
-          required
-          containerClasses="col-md-6 mb-3"
-          error={errors ? errors.city : ''}
+        <SelectComponent
+          containerClasses="col-md-6 mb-3 mt-2"
+          placeholder="Cidade"
+          shippings={shippings}
+          onChange={getShippingPrice}
         />
 
         <InputComponent 
@@ -245,6 +262,7 @@
       handleNextAction={handleCreateOrder} 
       bind:continueButtonDisabled={submitFormButtonDisabled}
       bind:continueButtonLoadingText={loadingText}
+      bind:shippingPrice={shippingPrice}
     />
   </div>
 </div>

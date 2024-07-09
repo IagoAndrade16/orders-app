@@ -14,6 +14,7 @@ type CreateOrderInput = {
   complement: string;
   products: OrderProductDTO[];
   paymentMethod: OrderPaymentMethod;
+  shippingId: string;
 }
 
 export type OrderProductDTO = {
@@ -46,6 +47,7 @@ export type GetOrderData = {
     quantity: number;
     imgUrl: string;
   }[];
+  shippingPrice: number;
 }
 
 export type GetOrderOutput = {
@@ -88,7 +90,8 @@ export class OrdersService {
       userEmail: input.email,
       products: input.products,
       paymentMethod: input.paymentMethod,
-      userAddress: `${input.city} - ${input.zipCode}, ${input.neighborhood}, ${input.street}, ${input.number}, ${input.complement}`
+      userAddress: `${input.city} - ${input.zipCode}, ${input.neighborhood}, ${input.street}, ${input.number}, ${input.complement}`,
+      shippingId: input.shippingId
     });
 
     return res.data as CreateOrderOutput;

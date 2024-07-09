@@ -74,6 +74,7 @@
                 <li><a class="dropdown-item" href="/gerencial/pedidos">Visualizar pedidos</a></li>
                 <li><a class="dropdown-item" href="/gerencial/produtos">Gerenciar produtos</a></li>
                 <li><a class="dropdown-item" href="/gerencial/produtos/relatorio">Relatório de produtos</a></li>
+                <li><a class="dropdown-item" href="/gerencial/fretes">Gerenciar Fretes</a></li>
               </ul>
             </li>
             &nbsp &nbsp

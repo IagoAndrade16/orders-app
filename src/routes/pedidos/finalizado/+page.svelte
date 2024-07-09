@@ -7,9 +7,11 @@
 	import { CreditCardIcon, FileTextIcon, TruckIcon } from "svelte-feather-icons";
 
   let order: GetOrderData | null = null;
+  
 	
   const orderId = $page.url.searchParams.get('id');
   let totalPrice = 0;
+  let shippingPrice = 0;
 
   onMount(async () => {
     if(!orderId) Engine.navigateTo('/');
@@ -19,6 +21,7 @@
     if(getOrderRes.data) { 
       order = getOrderRes.data;
       totalPrice = order.products.reduce((acc, product) => acc + (product.price * product.quantity), 0);
+      shippingPrice = order.shippingPrice;
     } else {
       Engine.navigateTo('/');
     }
@@ -49,7 +52,7 @@
       </h4>
       <p>
         {#if order.paymentMethod === 'pix'}
-          Realize o PIX para a chave: <b> CNPJ: 53.903.643/0001-01(53903643 Pedro Henrique Souza Siqueira) </b> no valor de <b>{Utils.formatNumberToBrl(totalPrice)}
+          Realize o PIX para a chave: <b> CNPJ: 53.903.643/0001-01(53903643 Pedro Henrique Souza Siqueira) </b> no valor de <b>{Utils.formatNumberToBrl(totalPrice + shippingPrice)}
           </b> e pronto! Seu pedido já estará em estágio de preparo.
 
         {:else}
@@ -70,13 +73,18 @@
       </div>
 
       <div class="d-flex justify-content-evenly">
+        <p>Frete</p>
+        <p class="text-bold">{Utils.formatNumberToBrl(shippingPrice)}</p>
+      </div>
+
+      <div class="d-flex justify-content-evenly">
         <p>Descontos</p>
         <p class="text-bold text-success">{Utils.formatNumberToBrl(0)}</p>
       </div>
 
       <div class="d-flex justify-content-evenly">
         <p>Valor final:</p>
-        <p class="text-bold">{Utils.formatNumberToBrl(totalPrice)}</p>
+        <p class="text-bold">{Utils.formatNumberToBrl(totalPrice + shippingPrice)}</p>
       </div>
     </div>
   </div>
