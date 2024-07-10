@@ -10,7 +10,7 @@
 
 
 <div class="row mt-5">
-    <div class="col-5">
+    <div class="col-12 col-lg-5">
         <table class="table table-hover table-bordered table-striped">
             <thead>
                 <tr>
@@ -27,12 +27,12 @@
                         <td>
                             <EditOrDeleteShippingButton
                                 textButton={'Editar'}
-                                classButton={'btn-success'}
+                                classButton={'btn-success mb-1'}
                                 id={shipping.id}
                                 onClick={editFunction}
                             />
                             <EditOrDeleteShippingButton
-                                textButton={'Deletar'}
+                                textButton={'Excluir'}
                                 classButton={'btn-danger'}
                                 id={shipping.id}
                                 onClick={deleteFunction}

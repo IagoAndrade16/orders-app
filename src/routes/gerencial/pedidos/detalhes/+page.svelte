@@ -42,7 +42,7 @@
     
     if(getOrderRes.data) { 
       order = getOrderRes.data;
-      totalPrice = order.products.reduce((acc, product) => acc + (product.price * product.quantity), 0);
+      totalPrice = order.shippingPrice + order.products.reduce((acc, product) => acc + (product.price * product.quantity), 0);
       // getStatusBadgeColor(order.status);
     } else {
       Engine.navigateTo('/');

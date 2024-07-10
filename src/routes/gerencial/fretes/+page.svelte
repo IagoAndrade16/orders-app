@@ -6,7 +6,6 @@
 	import { ToastService } from "$lib/services/ToastService";
 	import { onMount } from "svelte";
 	import type { Shipping } from "$lib/entities/Shipping";
-	import EditShippingModal from "$lib/components/modals/EditShippingModal.svelte";
 	import { userStore } from "$lib/stores/user.store";
 
     
@@ -169,7 +168,4 @@
             />
         </div>
     </div>
-    <EditShippingModal
-    
-    />
 </BodyMargin>
